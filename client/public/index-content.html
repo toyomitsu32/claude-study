@@ -297,6 +297,38 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   </div>
 
   <div class="card">
+    <div class="card-ttl">📊 使用量の仕組みを知ろう</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">設定 → 「使用量」で現在の消費状況を確認できる。使い過ぎて制限にかからないよう、仕組みを理解しておこう。</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:12px;background:var(--bg3);border-radius:var(--r-sm)">
+        <span style="font-size:18px;flex-shrink:0">⏱️</span>
+        <div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:3px">現在のセッション（数時間ごとにリセット）</div>
+          <div style="font-size:12px;color:var(--text2)">短期間の集中使用を制限するバッファ。ハンズオン中に消費しやすいので進捗を確認しておく。</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:12px;background:var(--bg3);border-radius:var(--r-sm)">
+        <span style="font-size:18px;flex-shrink:0">📅</span>
+        <div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:3px">週間制限（金曜日にリセット）</div>
+          <div style="font-size:12px;color:var(--text2)">「すべてのモデル」と「Sonnetのみ」の2種類。Sonnetは週内で別途リセットされる。両方の残量を確認すると安心。</div>
+        </div>
+      </div>
+      <div style="background:rgba(99,85,232,.06);border:1px solid rgba(99,85,232,.18);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2)">
+        💡 <strong style="color:var(--text)">パーセント表示の目安</strong>：ハンズオン全体を通じて「現在のセッション」が 30～50%を超えると制限にかかる可能性がある。不必要な再送信は避けよう。
+      </div>
+    </div>
+    <div class="ci" onclick="chk(this,'c0_usage',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">使用量画面を確認した</div>
+        <div class="ci-desc">設定 → 「使用量」を開き、セッション・週間制限のバーを目で確認する</div>
+      </div>
+      <span class="tag tg-p">+10 XP</span>
+    </div>
+  </div>
+
+  <div class="card">
     <div class="card-ttl">⬇️ Claude Desktop アプリをインストール</div>
     <div class="steps">
       <div class="step">
