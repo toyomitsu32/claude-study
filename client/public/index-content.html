@@ -447,7 +447,6 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       <li>修正依頼・バージョン切り替えがチャットで完結</li>
       <li>共有リンクの発行・他サイトへの埋め込みが可能</li>
       <li>AI搭載アプリを作ってシェアできる</li>
-      <li>MCP連携でAsana・Slackと繋がるアプリも作れる（Pro以上）</li>
     </ul>
   </div>
 
@@ -472,13 +471,14 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     </div>
     <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2);margin-bottom:14px">
       <strong style="color:var(--text);display:block;margin-bottom:4px">📦 事前準備</strong>
-      配布ZIPを解凍して中の3ファイルを確認しておく
+      配布ZIPを解凍して <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">02_プロジェクト用資料/</code> フォルダの4ファイルを確認しておく
       <div class="ftree" style="margin-top:8px">
 <table style="border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px">
-<tr><td style="color:var(--blue);padding:1px 0">handson-01/</td><td></td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">company-faq.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 社内よくある質問</td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">product-list.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 商品・サービス一覧</td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">└── <span style="color:var(--text2)">email-template.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← メール雛形</td></tr>
+<tr><td style="color:var(--blue);padding:1px 0">02_プロジェクト用資料/</td><td></td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">会社概要_サンプル株式会社.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 会社情報</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">製品カタログ_CloudTaskPro.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 製品・料金情報</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">よくある質問FAQ.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 製品FAQ</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">└── <span style="color:var(--text2)">社内規程_抜粋.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 社内ルール</td></tr>
 </table>
       </div>
     </div>
@@ -500,10 +500,9 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         <div class="ci-step">
           <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
-あなたは私の業務アシスタントです。
+あなたはサンプル株式会社のアシスタントです。
 回答は必ず日本語で、箇条書きで簡潔にまとめてください。
 質問には結論を最初に書いてください。
-提案メールを書くときは必ずemail-template.txtの雛形を参考にしてください。
           </div>
         </div>
       </div>
@@ -513,8 +512,8 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     <div class="ci" onclick="chk(this,'c1c',10)">
       <div class="cb"><span class="ck">✓</span></div>
       <div class="ci-body">
-        <div class="ci-ttl">3ファイルをナレッジにアップロード</div>
-        <div class="ci-desc">「ナレッジを追加」→ 3つのファイルをまとめて選択</div>
+        <div class="ci-ttl">4ファイルをナレッジにアップロード</div>
+        <div class="ci-desc">「ナレッジを追加」→ 02_プロジェクト用資料/ の4ファイルをまとめて選択</div>
       </div>
       <span class="tag tg-p">+10 XP</span>
     </div>
@@ -527,10 +526,10 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         <div class="ci-step">
           <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
-有給休暇を来週取りたいのですが、手続きを教えてください
+この資料をもとに、新入社員向けのCloudTask Proの紹介文を200字以内で作ってください
           </div>
         </div>
-        <div class="ci-step" style="color:var(--purple);margin-top:6px">✨ 社内FAQを参照した回答が返ってくることを確認しよう</div>
+        <div class="ci-step" style="color:var(--purple);margin-top:6px">✨ 製品カタログ・FAQを参照した回答が返ってくることを確認しよう</div>
       </div>
       <span class="tag tg-p">+10 XP</span>
     </div>
@@ -881,28 +880,28 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
   <div class="ho-card" style="border:1px solid rgba(74,158,255,.28);background:rgba(74,158,255,.03)">
     <div class="ho-head">
       <div class="ho-num" style="background:rgba(74,158,255,.18);color:var(--blue)">5</div>
-      <h3>ハンズオン⑤ スラッシュコマンドを体験する</h3>
+      <h3>ハンズオン⑤ 既存コードを分析してREADMEを作る</h3>
       <div class="xp-tag">+20 XP</div>
     </div>
     <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2);margin-bottom:14px">
       <strong style="color:var(--text);display:block;margin-bottom:6px">📦 事前準備：配布ZIPを解凍して確認</strong>
       <div class="ftree">
 <table style="border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px">
-<tr><td style="color:var(--blue);padding:1px 0">handson-05/</td><td></td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">meeting-notes.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 箇条書きの会議メモ</td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">└── <span style="color:var(--blue)">.claude/</span></td><td></td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:var(--blue)">skills/</span></td><td></td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:var(--blue)">議事録/</span></td><td></td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:var(--text2)">SKILL.md</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← カスタムコマンドの定義</td></tr>
+<tr><td style="color:var(--blue);padding:1px 0">05_ClaudeCode分析用サンプル/</td><td></td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">package.json</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← Node.js設定</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--blue)">src/</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← Express.jsソース</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--blue)">docs/</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← API仕様書</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">└── <span style="color:var(--blue)">tests/</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← テストコード</td></tr>
 </table>
       </div>
+      <div style="margin-top:8px;padding:8px;background:var(--bg2);border-radius:6px;border:1px solid var(--border);font-size:11px;color:var(--text2)">※ タスク管理APIのサンプルプロジェクト（Express.js）。コード不要でドキュメント生成・整理を体験できる</div>
     </div>
 
     <div class="ci" onclick="chk(this,'c5a',10)">
       <div class="cb"><span class="ck">✓</span></div>
       <div class="ci-body">
         <div class="ci-ttl">コードタブでフォルダを開き /init を実行</div>
-        <div class="ci-desc">コードタブ → handson-05 フォルダを開く → / を押してメニューを眺める → /init を実行</div>
+        <div class="ci-desc">コードタブ → <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 4px;border-radius:3px">05_ClaudeCode分析用サンプル/</code> フォルダを開く → <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 4px;border-radius:3px">/</code> を押してメニューを眺める → <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 4px;border-radius:3px">/init</code> を実行</div>
         <div class="ci-step" style="color:var(--blue);margin-top:6px">✨ CLAUDE.md が自動生成されるのを確認しよう</div>
       </div>
       <span class="tag tg-b">+10 XP</span>
@@ -911,15 +910,15 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
     <div class="ci" onclick="chk(this,'c5b',10)">
       <div class="cb"><span class="ck">✓</span></div>
       <div class="ci-body">
-        <div class="ci-ttl">カスタムコマンド /議事録 を実行する</div>
+        <div class="ci-ttl">日本語READMEを自動生成させる</div>
         <div class="ci-desc">パネルにコピペして送信</div>
         <div class="ci-step">
           <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
-/議事録
+このフォルダの構成を説明して、READMEを日本語で作って
           </div>
         </div>
-        <div class="ci-step" style="color:var(--blue);margin-top:6px">✨ meeting-notes.txt を読んで議事録が自動生成されるのを確認。diffビューでAcceptしてみよう</div>
+        <div class="ci-step" style="color:var(--blue);margin-top:6px">✨ コード不要でREADME.mdが自動生成されるのを確認。diffビューでAcceptしてみよう</div>
       </div>
       <span class="tag tg-b">+10 XP</span>
     </div>
@@ -963,7 +962,7 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
       </div>
       <div class="tl-item" style="background:rgba(74,158,255,.06);border:1px solid rgba(74,158,255,.15);margin-top:6px">
         <div class="tl-num" style="background:rgba(74,158,255,.18);color:var(--blue)">5</div>
-        <div class="tl-body"><div class="tl-ttl">💻 コード：/init + カスタムコマンド</div><div class="tl-sub">「/議事録 の一言で議事録が完成した！」</div></div>
+        <div class="tl-body"><div class="tl-ttl">💻 コード：/init + READMEを日本語で自動生成</div><div class="tl-sub">「コード不要でREADMEが完成した！」</div></div>
         <span class="tag tg-b">20分</span>
       </div>
       <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;margin-top:10px;text-align:center">
@@ -978,12 +977,12 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
     <div class="card-ttl">📦 配布ファイル</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
       <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
-        <div style="font-size:12px;font-weight:700;color:var(--purple2);margin-bottom:6px">handson-01.zip</div>
-        <div style="font-size:11px;color:var(--text2)">・company-faq.txt<br>・product-list.txt<br>・email-template.txt</div>
+        <div style="font-size:12px;font-weight:700;color:var(--purple2);margin-bottom:6px">02_プロジェクト用資料/</div>
+        <div style="font-size:11px;color:var(--text2)">・会社概要_サンプル株式会社.txt<br>・製品カタログ_CloudTaskPro.txt<br>・よくある質問FAQ.txt<br>・社内規程_抜粋.txt</div>
       </div>
       <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
-        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">handson-05.zip</div>
-        <div style="font-size:11px;color:var(--text2)">・meeting-notes.txt<br>・.claude/skills/議事録/<br>&nbsp;&nbsp;SKILL.md</div>
+        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">05_ClaudeCode分析用サンプル/</div>
+        <div style="font-size:11px;color:var(--text2)">・package.json<br>・src/（Express.jsソース）<br>・docs/（API仕様書）<br>・tests/（テストコード）</div>
       </div>
     </div>
   </div>
