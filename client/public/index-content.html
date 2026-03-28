@@ -277,9 +277,15 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   <div class="sec-head">
     <div class="sec-icon ic-purple">🗺️</div>
     <div><h2>はじめの一歩</h2><p>まずプランを契約してアプリを入れよう。それだけでClaudeが使い始められる。</p></div>
-  </div>
+</div>
 
-  <div class="card">
+<!-- MacBook前提バナー -->
+<div style="background:rgba(99,85,232,.07);border:1.5px solid rgba(99,85,232,.22);border-radius:var(--r);padding:12px 20px;margin:0 auto 20px;max-width:860px;display:flex;align-items:center;gap:12px">
+  <span style="font-size:20px;flex-shrink:0">💻</span>
+  <div style="font-size:13px"><strong style="color:var(--purple2)">本ページは MacBook（macOS）を前提としています。</strong><span style="color:var(--text2);margin-left:6px">Windows は対象外です。</span></div>
+</div>
+
+<div class="card">
     <div class="card-ttl">📋 プランを選ぶ</div>
     <table class="ov-table">
       <tr><th>プラン</th><th>料金</th><th>使えるもの</th><th>おすすめ</th></tr>
@@ -299,7 +305,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       </div>
       <div class="step">
         <div class="step-n done">2</div>
-        <div class="step-b"><strong>OS に合わせてダウンロード</strong><span>macOS（Apple Silicon M1以降）または Windows x64</span></div>
+        <div class="step-b"><strong>macOS用をダウンロード</strong><span>macOS（Apple Silicon M1以降）を選択</span></div>
       </div>
       <div class="step">
         <div class="step-n">3</div>
@@ -310,7 +316,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         <div class="step-b"><strong>画面上部のタブを確認</strong><span>チャット・Cowork・コード の3タブが表示されていればOK</span></div>
       </div>
     </div>
-    <div class="warn">⚠️ Windows の場合：設定 → システム → 開発者向け → <strong>開発者モードをON</strong> にする必要あり。ARM64は非対応。</div>
+
   </div>
 
   <!-- Claude in Chrome 補足 -->
@@ -631,7 +637,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         <div class="step-b"><strong>タスクを入力して送信</strong><span>日本語で指示するだけ。実行計画が表示されたら確認して承認する</span></div>
       </div>
     </div>
-    <div class="warn">⚠️ Windows：管理者権限でインストールが必要。権限がない場合はCoworkは使用不可。</div>
+
   </div>
 
   <!-- HANDSON 2 -->
@@ -792,19 +798,13 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     <p style="font-size:13px;color:var(--text2);margin-bottom:14px">デスクトップアプリのみ使う場合は不要。Web（claude.ai/code）で使いたい場合は以下でCLIをインストールする。</p>
     <div style="display:flex;flex-direction:column;gap:12px">
       <div>
-        <div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px">🍎 Mac / Linux（ターミナル）</div>
+        <div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px">🍎 Mac（ターミナル）</div>
         <div class="code">
           <button class="copy-btn" onclick="cp(this,event)">copy</button>
 curl -fsSL https://claude.ai/install.sh | bash
         </div>
       </div>
-      <div>
-        <div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px">🪟 Windows（PowerShell）</div>
-        <div class="code">
-          <button class="copy-btn" onclick="cp(this,event)">copy</button>
-curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
-        </div>
-      </div>
+
     </div>
     <div class="steps" style="margin-top:14px">
       <div class="step">
