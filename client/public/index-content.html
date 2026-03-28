@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Desktop 導入ハンズオン — チャットの先を体験しよう</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #f7f8fc;
+  --bg2:     #ffffff;
+  --bg3:     #f0f1f7;
+  --bg4:     #e4e6f0;
+  --border:  rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.16);
+  --text:    #1a1b2e;
+  --text2:   #5a5c78;
+  --text3:   #9a9cb8;
+  --purple:  #6355e8;
+  --purple2: #7c6af7;
+  --teal:    #0f9e6a;
+  --teal2:   #0d7a52;
+  --blue:    #2176e8;
+  --blue2:   #1a5fc4;
+  --amber:   #c47d0a;
+  --green:   #2e8b57;
+  --pink:    #c4306e;
+  --r:       12px;
+  --r-sm:    8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.7;overflow-x:hidden}
+
+/* HERO */
+.hero{position:relative;padding:64px 24px 48px;text-align:center;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(99,85,232,.08) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(99,85,232,.2),transparent)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(99,85,232,.08);border:1px solid rgba(99,85,232,.18);border-radius:100px;padding:5px 16px;font-size:11px;letter-spacing:.1em;color:var(--purple);margin-bottom:20px;font-family:'JetBrains Mono',monospace}
+.hero h1{font-size:clamp(26px,5vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.hero h1 span{background:linear-gradient(135deg,#1a1b2e 0%,var(--purple) 50%,var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{color:var(--text2);font-size:14px;max-width:500px;margin:0 auto 36px}
+
+/* GLOBAL PROGRESS */
+.gp-wrap{max-width:460px;margin:0 auto}
+.gp-top{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.gp-track{height:4px;background:var(--bg3);border-radius:100px;overflow:hidden}
+.gp-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--teal));border-radius:100px;width:0%;transition:width .7s cubic-bezier(.4,0,.2,1)}
+
+/* XP BAR */
+.xp-strip{display:flex;align-items:center;gap:14px;max-width:860px;margin:32px auto 0;padding:14px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r)}
+.lv-badge{width:42px;height:42px;border-radius:50%;background:rgba(99,85,232,.12);border:2px solid var(--purple);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--purple);flex-shrink:0}
+.xp-info{flex:1}
+.xp-row{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.xp-track{height:6px;background:var(--bg3);border-radius:100px;overflow:hidden}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--purple2));border-radius:100px;width:0%;transition:width .6s cubic-bezier(.4,0,.2,1)}
+
+/* NAV */
+.nav-wrap{max-width:860px;margin:28px auto 0;padding:0 20px}
+.nav-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--border);padding-bottom:0}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:9px 16px;background:none;border:none;border-bottom:2px solid transparent;font-size:13px;color:var(--text2);cursor:pointer;transition:all .18s;white-space:nowrap;font-family:'Noto Sans JP',sans-serif;margin-bottom:-1px}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--text);border-bottom-color:var(--purple)}
+.tab-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);transition:background .2s}
+.nav-tab.done .tab-dot{background:var(--teal)}
+.nav-tab.active .tab-dot{background:var(--purple)}
+
+/* MAIN */
+.main{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.section{display:none;animation:fadeUp .28s ease}
+.section.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px}
+.sec-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.ic-purple{background:rgba(124,106,247,.15)}
+.ic-teal{background:rgba(45,212,160,.12)}
+.ic-blue{background:rgba(74,158,255,.12)}
+.ic-amber{background:rgba(245,166,35,.12)}
+.sec-head h2{font-size:20px;font-weight:700;margin-bottom:3px}
+.sec-head p{font-size:13px;color:var(--text2)}
+
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin-bottom:14px;transition:border-color .18s}
+.card:hover{border-color:var(--border2)}
+.card-ttl{font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card p{font-size:13px;color:var(--text2);line-height:1.8}
+.card ul{list-style:none}
+.card ul li{font-size:13px;color:var(--text2);padding:3px 0 3px 18px;position:relative}
+.card ul li::before{content:'›';position:absolute;left:4px;color:var(--text3)}
+
+/* TAGS */
+.tag{display:inline-block;padding:2px 10px;border-radius:100px;font-size:11px;font-weight:500}
+.tg-p{background:rgba(124,106,247,.18);color:var(--purple2)}
+.tg-t{background:rgba(45,212,160,.14);color:var(--teal)}
+.tg-b{background:rgba(74,158,255,.14);color:var(--blue)}
+.tg-a{background:rgba(245,166,35,.14);color:var(--amber)}
+.tg-g{background:rgba(76,175,125,.14);color:var(--green)}
+.tg-pk{background:rgba(244,114,182,.14);color:var(--pink)}
+
+/* OVERVIEW TABLE */
+.ov-table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+.ov-table th{background:var(--bg3);padding:9px 12px;text-align:left;font-weight:600;font-size:11px;color:var(--text2);border-bottom:1px solid var(--border)}
+.ov-table td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.ov-table tr:last-child td{border-bottom:none}
+.ov-table tr:hover td{background:rgba(255,255,255,.02)}
+
+/* ENV DIAGRAM */
+.env-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.env-col{display:flex;flex-direction:column;gap:8px}
+.env-lbl{font-size:11px;font-weight:700;letter-spacing:.07em;text-align:center;margin-bottom:2px}
+.env-box{border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden}
+.env-hd{padding:9px 12px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px}
+.teal-hd{background:rgba(45,212,160,.1);color:var(--teal)}
+.purple-hd{background:rgba(124,106,247,.1);color:var(--purple2)}
+.gray-hd{background:rgba(255,255,255,.04);color:var(--text2)}
+.env-bd{padding:9px 12px;background:var(--bg2);font-size:12px;color:var(--text2);line-height:1.7}
+.env-arr{text-align:center;font-size:16px;line-height:1;margin:0}
+.inner-box{background:rgba(124,106,247,.08);border-radius:6px;padding:8px;margin-bottom:8px}
+.inner-box .ib-ttl{font-size:11px;color:var(--purple2);font-weight:700;margin-bottom:3px}
+.inner-box .ib-body{font-size:11px;color:var(--text2)}
+.env-sum{border-radius:var(--r-sm);padding:10px;font-size:12px;text-align:center}
+
+/* STEP FLOW */
+.steps{display:flex;flex-direction:column;gap:0;margin:12px 0}
+.step{display:flex;align-items:flex-start;gap:12px;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:15px;top:34px;width:2px;height:calc(100% - 6px);background:var(--border)}
+.step-n{width:32px;height:32px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:var(--text2);position:relative;z-index:1}
+.step-n.done{background:rgba(45,212,160,.18);border-color:var(--teal);color:var(--teal)}
+.step-b{padding:4px 0 20px;flex:1}
+.step-b strong{font-size:13px;display:block;margin-bottom:2px}
+.step-b span{font-size:12px;color:var(--text2)}
+
+/* HANDSON */
+.ho-card{border-radius:var(--r);padding:22px 24px;margin-bottom:14px}
+.ho-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.ho-head h3{font-size:16px;font-weight:700}
+.ho-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.xp-tag{margin-left:auto;background:rgba(245,166,35,.14);border:1px solid rgba(245,166,35,.25);border-radius:100px;padding:3px 12px;font-size:11px;color:var(--amber);font-family:'JetBrains Mono',monospace}
+
+/* CHECK ITEMS */
+.ci{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border:1px solid var(--border);border-radius:var(--r-sm);margin-bottom:8px;cursor:pointer;transition:all .18s;user-select:none}
+.ci:hover{border-color:var(--border2);background:rgba(255,255,255,.02)}
+.ci.done{border-color:rgba(45,212,160,.28);background:rgba(45,212,160,.04)}
+.cb{width:20px;height:20px;border:2px solid var(--border2);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s;margin-top:1px}
+.ci.done .cb{background:var(--teal);border-color:var(--teal)}
+.ck{display:none;color:#0b0c11;font-size:12px;font-weight:800}
+.ci.done .ck{display:block}
+.ci-body{flex:1}
+.ci-ttl{font-size:13px;font-weight:600;margin-bottom:2px}
+.ci.done .ci-ttl{text-decoration:line-through;color:var(--text3)}
+.ci-desc{font-size:12px;color:var(--text2)}
+.ci-step{font-size:11px;color:var(--text3);margin-top:5px;font-family:'JetBrains Mono',monospace;line-height:1.6}
+
+/* CODE BLOCK */
+.code{background:#f0f4f8;border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#1e2a3a;overflow-x:auto;margin:10px 0;line-height:1.7;position:relative}
+.code-label{position:absolute;top:8px;right:10px;font-size:10px;color:var(--text3);letter-spacing:.06em}
+.copy-btn{position:absolute;top:7px;right:8px;background:#fff;border:1px solid var(--border);border-radius:4px;padding:3px 10px;font-size:10px;color:var(--text2);cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .15s}
+.copy-btn:hover{border-color:var(--border2);color:var(--text)}
+.copy-btn.copied{color:var(--teal);border-color:rgba(45,212,160,.3)}
+.cc{color:#4a4f6a}
+.ck2{color:var(--purple2)}
+.cs{color:var(--teal)}
+
+/* WARN BOX */
+.warn{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.2);border-radius:var(--r-sm);padding:12px 14px;font-size:12px;color:var(--amber);margin:10px 0}
+.info{background:rgba(74,158,255,.07);border:1px solid rgba(74,158,255,.18);border-radius:var(--r-sm);padding:12px 14px;font-size:12px;color:var(--blue);margin:10px 0}
+
+/* SECTION NAV */
+.sec-nav{display:flex;justify-content:space-between;margin-top:36px;padding-top:20px;border-top:1px solid var(--border)}
+.btn{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;border:none;font-family:'Noto Sans JP',sans-serif}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text2)}
+.btn-ghost:hover{border-color:var(--border2);color:var(--text)}
+.btn-primary{background:var(--purple);color:#fff}
+.btn-primary:hover{background:var(--purple2)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:#fff;border:1px solid rgba(15,158,106,.3);border-radius:var(--r);padding:12px 18px;display:flex;align-items:center;gap:12px;transform:translateX(130%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.12);max-width:260px}
+.toast.show{transform:translateX(0)}
+.toast-ico{font-size:20px}
+.toast-ttl{font-size:12px;font-weight:700;color:var(--teal)}
+.toast-desc{font-size:11px;color:var(--text2)}
+
+/* FINAL */
+.final-card{background:linear-gradient(135deg,rgba(99,85,232,.08),rgba(15,158,106,.06));border:1px solid rgba(99,85,232,.2);border-radius:var(--r);padding:36px;text-align:center;margin-top:16px;display:none}
+.final-card h3{font-size:20px;font-weight:700;margin:12px 0 8px}
+.final-card p{font-size:13px;color:var(--text2)}
+
+/* TIMELINE */
+.tl-item{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:var(--r-sm);margin-bottom:8px}
+.tl-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.tl-body{flex:1}
+.tl-ttl{font-size:13px;font-weight:700}
+.tl-sub{font-size:12px;color:var(--text2)}
+
+/* COMPARE */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.cmp-card{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.cmp-hd{padding:12px 14px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px}
+.cmp-bd{padding:12px 14px;background:var(--bg2)}
+.cmp-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px}
+.cmp-row:last-child{border-bottom:none}
+.cmp-k{color:var(--text3)}
+.cmp-v{color:var(--text);text-align:right}
+
+/* MINI CARDS */
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.mini-card{background:var(--bg3);border-radius:var(--r-sm);padding:14px;text-align:center}
+.mini-ico{font-size:22px;margin-bottom:6px}
+.mini-ttl{font-size:12px;font-weight:700;margin-bottom:3px}
+.mini-desc{font-size:11px;color:var(--text2);line-height:1.6}
+
+/* FILE TREE */
+.ftree{background:#f0f4f8;border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#1e2a3a;margin:10px 0;line-height:1.8}
+.ftree .fd{color:var(--blue)}
+.ftree .ff{color:var(--text2)}
+.ftree .fc{color:var(--text3)}
+
+/* SLASH CMD LIST */
+.slash-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.sc-item{background:var(--bg3);border-radius:var(--r-sm);padding:10px 12px;display:flex;gap:10px;align-items:flex-start}
+.sc-cmd{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--purple2);flex-shrink:0;min-width:90px}
+.sc-desc{font-size:11px;color:var(--text2);line-height:1.5}
+
+@media(max-width:600px){
+  .env-grid,.cmp-grid,.mini-grid,.slash-grid{grid-template-columns:1fr}
+  .ov-table{font-size:11px}
+  .ov-table th,.ov-table td{padding:7px 9px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">🎮 ハンズオン勉強会ガイド</div>
+  <h1><span>Claude Desktop 導入ハンズオン</span></h1>
+  <p class="hero-sub">チャットの先を体験しよう — Cowork・コード・Dispatchを一緒にさわる会</p>
+  <div class="gp-wrap">
+    <div class="gp-top">
+      <span>全体進捗</span>
+      <span id="gp-pct" style="font-family:'JetBrains Mono',monospace">0%</span>
+    </div>
+    <div class="gp-track"><div class="gp-fill" id="gp-bar"></div></div>
+  </div>
+</div>
+
+<!-- XP BAR -->
+<div class="xp-strip" style="max-width:860px;margin:20px auto 0;padding:0 20px">
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:12px 18px;display:flex;align-items:center;gap:14px;width:100%">
+    <div class="lv-badge" id="lv-num">1</div>
+    <div class="xp-info">
+      <div class="xp-row"><span id="lv-lbl">🌱 Claude 見習い</span><span id="xp-lbl" style="font-family:'JetBrains Mono',monospace">0 / 100 XP</span></div>
+      <div class="xp-track"><div class="xp-fill" id="xp-bar"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="go(0)" id="tab0"><span class="tab-dot"></span>🗺️ はじめの一歩</button>
+    <button class="nav-tab" onclick="go(1)" id="tab1"><span class="tab-dot"></span>💬 チャット</button>
+    <button class="nav-tab" onclick="go(2)" id="tab2"><span class="tab-dot"></span>🤖 Cowork</button>
+    <button class="nav-tab" onclick="go(3)" id="tab3"><span class="tab-dot"></span>💻 コード</button>
+    <button class="nav-tab" onclick="go(4)" id="tab4"><span class="tab-dot"></span>🏆 まとめ</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ===== SEC 0: はじめの一歩 ===== -->
+<div class="section active" id="s0">
+  <div class="sec-head">
+    <div class="sec-icon ic-purple">🗺️</div>
+    <div><h2>はじめの一歩</h2><p>まずプランを契約してアプリを入れよう。それだけでClaudeが使い始められる。</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">📋 プランを選ぶ</div>
+    <table class="ov-table">
+      <tr><th>プラン</th><th>料金</th><th>使えるもの</th><th>おすすめ</th></tr>
+      <tr><td><strong>Free</strong></td><td>無料</td><td>チャットのみ</td><td>まず試したい人</td></tr>
+      <tr><td><strong style="color:var(--purple2)">Pro</strong></td><td>$20/月</td><td>チャット・Cowork・コード</td><td style="color:var(--teal)">← 今日はこれ</td></tr>
+      <tr><td><strong>Max</strong></td><td>$100〜/月</td><td>Pro＋使用量大幅アップ</td><td>ヘビーユーザー向け</td></tr>
+    </table>
+    <div class="info">💡 今日のハンズオンはすべて <strong>Pro プラン</strong> で体験できます</div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">⬇️ Claude Desktop アプリをインストール</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n done">1</div>
+        <div class="step-b"><strong>公式サイトにアクセス</strong><span><a href="https://claude.com/download" style="color:var(--blue)">claude.com/download</a> を開く</span></div>
+      </div>
+      <div class="step">
+        <div class="step-n done">2</div>
+        <div class="step-b"><strong>OS に合わせてダウンロード</strong><span>macOS（Apple Silicon M1以降）または Windows x64</span></div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b"><strong>インストールして起動</strong><span>Google などのアカウントでサインイン</span></div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-b"><strong>画面上部のタブを確認</strong><span>チャット・Cowork・コード の3タブが表示されていればOK</span></div>
+      </div>
+    </div>
+    <div class="warn">⚠️ Windows の場合：設定 → システム → 開発者向け → <strong>開発者モードをON</strong> にする必要あり。ARM64は非対応。</div>
+  </div>
+
+  <!-- Claude in Chrome 補足 -->
+  <div class="card" style="border-color:rgba(74,158,255,.25);background:rgba(74,158,255,.02)">
+    <div class="card-ttl">🌐 補足：Web・デスクトップ・Chrome拡張の違い</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Claudeはデスクトップアプリ以外にも、Web・Chrome拡張機能でも使える。それぞれ役割が異なる。</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:start;padding:10px;background:var(--bg3);border-radius:var(--r-sm)">
+        <div style="font-size:12px;font-weight:700;color:var(--purple)">🖥️ デスクトップアプリ</div>
+        <div style="font-size:12px;color:var(--text2)">チャット・Cowork・コードタブが使えるメインのアプリ。今日の勉強会はここがベース。</div>
+      </div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:start;padding:10px;background:var(--bg3);border-radius:var(--r-sm)">
+        <div style="font-size:12px;font-weight:700;color:var(--blue)">🌐 Web（ブラウザ）</div>
+        <div style="font-size:12px;color:var(--text2)">claude.ai をブラウザで開いてチャットが使える。コードタブはCLIインストール後に claude.ai/code で利用可能。</div>
+      </div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:start;padding:10px;background:var(--bg3);border-radius:var(--r-sm)">
+        <div style="font-size:12px;font-weight:700;color:var(--teal)">🧩 Claude in Chrome</div>
+        <div style="font-size:12px;color:var(--text2)">Chrome拡張機能。ブラウザのサイドパネルにClaudeが常駐し、今見ているページを読んで操作できる。デスクトップアプリと連携することで、アプリから直接ブラウザを操作させることも可能。</div>
+      </div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
+      <div style="font-size:12px;font-weight:700;margin-bottom:10px">🧩 Claude in Chrome のインストール手順</div>
+      <div class="steps" style="margin:0">
+        <div class="step">
+          <div class="step-n done">1</div>
+          <div class="step-b"><strong>Chrome Web Store で「Claude」を検索</strong><span>または <a href="https://chromewebstore.google.com" style="color:var(--blue)">chromewebstore.google.com</a> で「Claude」と検索</span></div>
+        </div>
+        <div class="step">
+          <div class="step-n done">2</div>
+          <div class="step-b"><strong>「Chromeに追加」をクリック</strong><span>発行元が Anthropic のものを選ぶ</span></div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div class="step-b"><strong>ツールバーのパズルピースアイコン → ピン留め</strong><span>Claudeアイコンが常にツールバーに表示されるようになる</span></div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div class="step-b"><strong>デスクトップアプリとの連携（任意）</strong><span>デスクトップアプリ → 設定 → コネクタ → 「Claude in Chrome」をON にする</span></div>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:10px">⚠️ Chrome専用。他のブラウザ（Edge・Safari・Firefox）やモバイルは非対応。Pro以上のプランが必要。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">🗂️ Claudeの3つのモード — 全体像</div>
+    <table class="ov-table">
+      <tr>
+        <th></th>
+        <th><span style="color:var(--purple2)">💬 チャット</span></th>
+        <th><span style="color:var(--teal)">🤖 Cowork</span></th>
+        <th><span style="color:var(--blue)">💻 コード</span></th>
+      </tr>
+      <tr><td style="color:var(--text3)">使える場所</td><td>ブラウザ・アプリ・モバイル</td><td>デスクトップアプリ専用</td><td>デスクトップアプリ</td></tr>
+      <tr><td style="color:var(--text3)">操作スタイル</td><td>1問1答</td><td>目標を伝えて自律実行</td><td>コードを書きながら対話</td></tr>
+      <tr><td style="color:var(--text3)">ファイル操作</td><td>手動アップロード</td><td>ローカルに直接アクセス</td><td>プロジェクト内を直接操作</td></tr>
+      <tr><td style="color:var(--text3)">対象</td><td>誰でも</td><td>非エンジニア〜全般</td><td>主にエンジニア</td></tr>
+      <tr><td style="color:var(--text3)">料金</td><td>Free〜</td><td>Pro以上</td><td>Pro以上</td></tr>
+    </table>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">
+      <div style="background:rgba(124,106,247,.08);border:1px solid rgba(124,106,247,.18);border-radius:var(--r-sm);padding:14px;text-align:center">
+        <div style="font-size:20px;margin-bottom:6px">💬</div>
+        <div style="font-size:12px;font-weight:700;color:var(--purple2);margin-bottom:3px">チャット</div>
+        <div style="font-size:11px;color:var(--text2)">質問・相談<br>文章作成</div>
+      </div>
+      <div style="background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.18);border-radius:var(--r-sm);padding:14px;text-align:center">
+        <div style="font-size:20px;margin-bottom:6px">🤖</div>
+        <div style="font-size:12px;font-weight:700;color:var(--teal);margin-bottom:3px">Cowork</div>
+        <div style="font-size:11px;color:var(--text2)">作業を<br>丸ごと任せる</div>
+      </div>
+      <div style="background:rgba(74,158,255,.08);border:1px solid rgba(74,158,255,.18);border-radius:var(--r-sm);padding:14px;text-align:center">
+        <div style="font-size:20px;margin-bottom:6px">💻</div>
+        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:3px">コード</div>
+        <div style="font-size:11px;color:var(--text2)">コーディングを<br>一緒に進める</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-nav">
+    <button class="btn btn-ghost" disabled>← 前へ</button>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost" onclick="dlPage()" style="gap:6px">⬇️ このページをダウンロード</button>
+      <button class="btn btn-primary" onclick="go(1)">チャットへ進む →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEC 1: チャット ===== -->
+<div class="section" id="s1">
+  <div class="sec-head">
+    <div class="sec-icon ic-purple">💬</div>
+    <div><h2>Part 1：チャット</h2><p>設定・プロジェクト・コネクタ・アーティファクトをマスターしよう</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">⚙️ 最初にやる設定</div>
+    <p style="margin-bottom:12px">設定画面で自分専用のClaudeに育てられる。一度やれば毎回反映される。</p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px;background:var(--bg3);border-radius:var(--r-sm)">
+        <span style="font-size:16px;flex-shrink:0">💼</span>
+        <div><div style="font-size:13px;font-weight:600;margin-bottom:2px">職務・個人設定</div><div style="font-size:12px;color:var(--text2)">設定 → 「職務」「Claudeが応答時に考慮すべき個人設定は何ですか？」に自分の情報を入力。全会話に反映される</div></div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px;background:var(--bg3);border-radius:var(--r-sm)">
+        <span style="font-size:16px;flex-shrink:0">🎨</span>
+        <div><div style="font-size:13px;font-weight:600;margin-bottom:2px">スタイル</div><div style="font-size:12px;color:var(--text2)">回答の文体をプリセット5種 or カスタムで変更できる</div></div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px;background:var(--bg3);border-radius:var(--r-sm)">
+        <span style="font-size:16px;flex-shrink:0">🧠</span>
+        <div><div style="font-size:13px;font-weight:600;margin-bottom:2px">メモリ</div><div style="font-size:12px;color:var(--text2)">過去会話から記憶を自動生成するON/OFF。育てていく感覚</div></div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px;background:var(--bg3);border-radius:var(--r-sm)">
+        <span style="font-size:16px;flex-shrink:0">🔌</span>
+        <div><div style="font-size:13px;font-weight:600;margin-bottom:2px">コネクタ（MCP）</div><div style="font-size:12px;color:var(--text2)">Gmail・Google Calendar・Slack・Canvaなど外部サービスと接続</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">📁 プロジェクトとは</div>
+    <p style="margin-bottom:12px">特定の目的に特化したワークスペース。毎回同じ前提を説明しなくてよくなる。</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
+        <div style="font-size:11px;color:var(--purple2);font-weight:700;margin-bottom:6px;letter-spacing:.06em">プロジェクト指示</div>
+        <div style="font-size:12px;color:var(--text2)">Claudeへの固定ルール・役割・トーンを設定<br><br>例：「マーケ担当として回答」「箇条書きで」</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
+        <div style="font-size:11px;color:var(--purple2);font-weight:700;margin-bottom:6px;letter-spacing:.06em">ナレッジ（資料）</div>
+        <div style="font-size:12px;color:var(--text2)">PDFや社内資料をアップロードして参照させる<br><br>例：社内FAQ・製品仕様書・料金表</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">🎨 アーティファクトとは</div>
+    <p style="margin-bottom:10px">チャット画面の右側に表示される専用ウィンドウ。コードやHTMLを動く状態でプレビューできる。</p>
+    <ul>
+      <li>コード・HTML・Reactなどを動く状態でその場でプレビュー</li>
+      <li>修正依頼・バージョン切り替えがチャットで完結</li>
+      <li>共有リンクの発行・他サイトへの埋め込みが可能</li>
+      <li>AI搭載アプリを作ってシェアできる</li>
+      <li>MCP連携でAsana・Slackと繋がるアプリも作れる（Pro以上）</li>
+    </ul>
+  </div>
+
+  <!-- 配布ファイルダウンロード -->
+  <a href="https://drive.google.com/file/d/1VoU4dnG7yNt5n8U1E29uTdj03BLhi6Kd/view?usp=sharing" target="_blank" style="text-decoration:none">
+    <div style="display:flex;align-items:center;gap:16px;background:rgba(99,85,232,.06);border:1.5px solid rgba(99,85,232,.25);border-radius:var(--r);padding:16px 20px;margin-bottom:14px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='rgba(99,85,232,.5)'" onmouseout="this.style.borderColor='rgba(99,85,232,.25)'">
+      <div style="width:44px;height:44px;background:rgba(99,85,232,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📦</div>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:700;color:var(--purple);margin-bottom:2px">ハンズオン配布ファイルをダウンロード</div>
+        <div style="font-size:12px;color:var(--text2)">ClaudeCodeHandsOn.zip — Google Drive で開く</div>
+      </div>
+      <div style="font-size:18px;color:var(--purple);opacity:.6">↗</div>
+    </div>
+  </a>
+
+  <!-- HANDSON 1 -->
+  <div class="ho-card" style="border:1px solid rgba(124,106,247,.3);background:rgba(124,106,247,.04)">
+    <div class="ho-head">
+      <div class="ho-num" style="background:rgba(124,106,247,.2);color:var(--purple2)">1</div>
+      <h3>ハンズオン① チャット：プロジェクト設定</h3>
+      <div class="xp-tag">+40 XP</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2);margin-bottom:14px">
+      <strong style="color:var(--text);display:block;margin-bottom:4px">📦 事前準備</strong>
+      配布ZIPを解凍して中の3ファイルを確認しておく
+      <div class="ftree" style="margin-top:8px">
+<table style="border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px">
+<tr><td style="color:var(--blue);padding:1px 0">handson-01/</td><td></td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">company-faq.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 社内よくある質問</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">product-list.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 商品・サービス一覧</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">└── <span style="color:var(--text2)">email-template.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← メール雛形</td></tr>
+</table>
+      </div>
+    </div>
+
+    <div class="ci" onclick="chk(this,'c1a',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">プロジェクトを新規作成する</div>
+        <div class="ci-desc">チャット → 左サイドバー「プロジェクト」→「プロジェクトを作成」</div>
+      </div>
+      <span class="tag tg-p">+10 XP</span>
+    </div>
+
+    <div class="ci" onclick="chk(this,'c1b',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">プロジェクト指示を設定する</div>
+        <div class="ci-desc">「プロジェクト指示」にコピペ</div>
+        <div class="ci-step">
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+あなたは私の業務アシスタントです。
+回答は必ず日本語で、箇条書きで簡潔にまとめてください。
+質問には結論を最初に書いてください。
+提案メールを書くときは必ずemail-template.txtの雛形を参考にしてください。
+          </div>
+        </div>
+      </div>
+      <span class="tag tg-p">+10 XP</span>
+    </div>
+
+    <div class="ci" onclick="chk(this,'c1c',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">3ファイルをナレッジにアップロード</div>
+        <div class="ci-desc">「ナレッジを追加」→ 3つのファイルをまとめて選択</div>
+      </div>
+      <span class="tag tg-p">+10 XP</span>
+    </div>
+
+    <div class="ci" onclick="chk(this,'c1c2',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">プロジェクト内でチャットして効果を確認</div>
+        <div class="ci-desc">プロジェクトに入ってチャットを開始 → コピペして送信</div>
+        <div class="ci-step">
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+有給休暇を来週取りたいのですが、手続きを教えてください
+          </div>
+        </div>
+        <div class="ci-step" style="color:var(--purple);margin-top:6px">✨ 社内FAQを参照した回答が返ってくることを確認しよう</div>
+      </div>
+      <span class="tag tg-p">+10 XP</span>
+    </div>
+
+    <div class="ci" onclick="chk(this,'c1d',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">Gmailを接続して試す</div>
+        <div class="ci-desc">設定 → コネクタ → Gmail を接続（OAuth認証）した後、コピペして送信</div>
+        <div class="ci-step">
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+今日の予定と未読メールの件名を教えてください。
+その後、Bプランについて問い合わせてきたお客様への
+提案メールの下書きを作ってください。
+          </div>
+        </div>
+      </div>
+      <span class="tag tg-p">+10 XP</span>
+    </div>
+  </div>
+
+  <div class="sec-nav">
+    <button class="btn btn-ghost" onclick="go(0)">← はじめの一歩</button>
+    <button class="btn btn-primary" onclick="go(2)">Cowork へ進む →</button>
+  </div>
+</div>
+
+<!-- ===== SEC 2: COWORK ===== -->
+<div class="section" id="s2">
+  <div class="sec-head">
+    <div class="sec-icon ic-teal">🤖</div>
+    <div><h2>Part 2：Cowork</h2><p>指示して離れるだけ。クラウドで自律実行するAIエージェント</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">Cowork とは</div>
+    <p style="margin-bottom:14px">目標を伝えると、Claudeが自分でファイルを開き・データを読み・作業を完了させる。PC不在でも動き続ける。</p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:11px;font-size:12px"><span style="color:var(--teal)">📂 </span>ローカルフォルダへ直接アクセス</div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:11px;font-size:12px"><span style="color:var(--teal)">⚡ </span>複雑な作業を並列処理</div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:11px;font-size:12px"><span style="color:var(--teal)">📊 </span>Excel・Word・PPTを直接生成</div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:11px;font-size:12px"><span style="color:var(--teal)">⏰ </span>/schedule でスケジュール実行</div>
+    </div>
+  </div>
+
+  <!-- ENV DIAGRAM -->
+  <div class="card">
+    <div class="card-ttl">🗂️ Cowork vs コード — どこで動くか</div>
+    <div class="env-grid">
+      <div class="env-col">
+        <div class="env-lbl" style="color:var(--teal)">🤖 Cowork</div>
+        <div class="env-box">
+          <div class="env-hd teal-hd">☁️ Anthropicクラウド（VM）</div>
+          <div class="env-bd">Claudeエージェントが動作<br>PC不在でも継続実行</div>
+        </div>
+        <div class="env-arr">↕️</div>
+        <div class="env-box">
+          <div class="env-hd gray-hd">🖥️ あなたのPC</div>
+          <div class="env-bd">指示入力・成果物受取</div>
+        </div>
+        <div class="env-sum" style="background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.18);color:var(--teal)">
+          ファイル整理・資料作成向き<br>指示して離れてOK
+        </div>
+      </div>
+      <div class="env-col">
+        <div class="env-lbl" style="color:var(--blue)">💻 コード（デスクトップ）</div>
+        <div class="env-box" style="border-color:rgba(74,158,255,.25)">
+          <div class="env-hd" style="background:rgba(74,158,255,.1);color:var(--blue)">🖥️ あなたのPC</div>
+          <div class="env-bd">
+            <div class="inner-box" style="background:rgba(74,158,255,.08)">
+              <div class="ib-ttl" style="color:var(--blue)">Claudeエージェント</div>
+              <div class="ib-body">ローカルで直接動作・ファイルを読み書き</div>
+            </div>
+            <div style="font-size:11px;color:var(--text2);text-align:center">↕ 差分表示・承認</div>
+            <div style="background:rgba(255,255,255,.04);border-radius:6px;padding:6px;margin-top:6px;font-size:11px;color:var(--text2);text-align:center">あなた（確認・承認）</div>
+          </div>
+        </div>
+        <div class="env-sum" style="background:rgba(74,158,255,.07);border:1px solid rgba(74,158,255,.18);color:var(--blue)">
+          コーディング・デバッグ向き<br>変更のたびに確認
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">⚙️ Cowork のセットアップ</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n done">1</div>
+        <div class="step-b"><strong>Claude Desktopアプリを起動</strong><span>上部タブの「Cowork」をクリック。有料プランであれば最初から使える状態になっている</span></div>
+      </div>
+      <div class="step">
+        <div class="step-n done">2</div>
+        <div class="step-b"><strong>作業フォルダを指定</strong><span>デスクトップに「Claude作業」フォルダを作成しておき、Coworkから指定する</span></div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b"><strong>タスクを入力して送信</strong><span>日本語で指示するだけ。実行計画が表示されたら確認して承認する</span></div>
+      </div>
+    </div>
+    <div class="warn">⚠️ Windows：管理者権限でインストールが必要。権限がない場合はCoworkは使用不可。</div>
+  </div>
+
+  <!-- HANDSON 2 -->
+  <div class="ho-card" style="border:1px solid rgba(45,212,160,.28);background:rgba(45,212,160,.03)">
+    <div class="ho-head">
+      <div class="ho-num" style="background:rgba(45,212,160,.18);color:var(--teal)">2</div>
+      <h3>ハンズオン② ブラウザで天気データ→Excelグラフ</h3>
+      <div class="xp-tag">+10 XP</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:10px;font-size:12px;color:var(--text2);margin-bottom:14px">
+      <strong style="color:var(--text)">事前準備：</strong> デスクトップに「Claude作業」フォルダを作っておく
+    </div>
+    <div class="ci" onclick="chk(this,'c2a',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">天気データをExcel＋インタラクティブグラフに変換</div>
+        <div class="ci-desc">Coworkタブ → 「Claude作業」フォルダを指定 → コピペして送信</div>
+        <div class="ci-step">
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+東京の直近7日間の天気と最高気温・最低気温を
+ウェブで調べて、デスクトップの「Claude作業」フォルダに作成してください。
+
+1. データをまとめたExcelファイル（天気データ.xlsx）
+2. 最高気温と最低気温の折れ線グラフ（天気グラフ.html）
+   ※ マウスで操作できるインタラクティブなグラフにしてください
+          </div>
+        </div>
+        <div class="ci-step" style="color:var(--teal);margin-top:6px">✨ 完了したら 天気グラフ.html をブラウザで開いてみよう</div>
+      </div>
+      <span class="tag tg-t">+10 XP</span>
+    </div>
+  </div>
+
+  <!-- HANDSON 3 -->
+  <div class="ho-card" style="border:1px solid rgba(45,212,160,.28);background:rgba(45,212,160,.03);margin-top:14px">
+    <div class="ho-head">
+      <div class="ho-num" style="background:rgba(45,212,160,.18);color:var(--teal)">3</div>
+      <h3>ハンズオン③ スケジュール実行を設定する</h3>
+      <div class="xp-tag">+10 XP</div>
+    </div>
+    <div class="ci" onclick="chk(this,'c3a',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">毎朝の天気予報を自動保存するタスクを作る</div>
+        <div class="ci-desc">Coworkタブ → コピペして送信 → スケジュール設定画面で「毎日 9:00」を選択</div>
+        <div class="ci-step">
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+毎朝9時に以下を実行するスケジュールタスクを作ってください。
+
+・今日の東京の天気予報をウェブで調べる
+・デスクトップの「Claude作業」フォルダに
+  「朝の天気_日付.txt」として保存する
+
+/schedule
+          </div>
+        </div>
+        <div class="ci-step" style="color:var(--teal);margin-top:6px">✨ 左サイドバー「Scheduled」でタスクを確認しよう</div>
+      </div>
+      <span class="tag tg-t">+10 XP</span>
+    </div>
+  </div>
+
+  <!-- HANDSON 4 -->
+  <div class="ho-card" style="border:1px solid rgba(244,114,182,.25);background:rgba(244,114,182,.03);margin-top:14px">
+    <div class="ho-head">
+      <div class="ho-num" style="background:rgba(244,114,182,.18);color:var(--pink)">4</div>
+      <h3>ハンズオン④ Dispatch — スマホから試す</h3>
+      <div class="xp-tag">+10 XP</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2);margin-bottom:14px">
+      <strong style="color:var(--text);display:block;margin-bottom:6px">📱 事前準備：スマホにClaudeアプリをインストール</strong>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px">
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px;text-align:center;font-size:12px">
+          <div style="font-size:16px;margin-bottom:4px">🍎</div>
+          <div style="font-weight:600;color:var(--text)">iPhone</div>
+          <div style="color:var(--text2)">App Store で<br>「Claude」を検索</div>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px;text-align:center;font-size:12px">
+          <div style="font-size:16px;margin-bottom:4px">🤖</div>
+          <div style="font-weight:600;color:var(--text)">Android</div>
+          <div style="color:var(--text2)">Google Play で<br>「Claude」を検索</div>
+        </div>
+      </div>
+      <div style="margin-top:8px;padding:8px;background:var(--bg2);border-radius:6px;border:1px solid var(--border)">
+        ✅ インストール後、PCと<strong style="color:var(--text)">同じアカウント</strong>でログインしておく
+      </div>
+    </div>
+    <div class="ci" onclick="chk(this,'c4a',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">スマホからPCに指示を出す</div>
+        <div class="ci-desc">
+          <strong style="color:var(--text)">PC側：</strong> Coworkタブ → 左サイドバー「Dispatch」→「はじめる」→ ファイルアクセスON<br>
+          <strong style="color:var(--text)">スマホ側：</strong> Claudeアプリ → Cowork → Dispatch を開く（PCと同じスレッドが表示される）
+        </div>
+        <div class="ci-step">
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+デスクトップの「Claude作業」フォルダを見て、
+今日作ったファイルの一覧と内容の要約を教えてください
+          </div>
+        </div>
+        <div style="background:rgba(244,114,182,.08);border:1px solid rgba(244,114,182,.2);border-radius:6px;padding:10px;margin-top:8px;font-size:12px">
+          <div style="font-weight:700;color:var(--pink);margin-bottom:4px">✨ 確認ポイント</div>
+          <div style="color:var(--text2)">スマホから送信すると、<strong style="color:var(--text)">PCのCoworkタブ</strong>でClaudeが実際に作業している様子がリアルタイムで確認できる。完了するとスマホに結果が届く。</div>
+        </div>
+      </div>
+      <span class="tag tg-pk">+10 XP</span>
+    </div>
+    <div class="warn">⚠️ PCが起動してClaudeが開いている間のみ動作。PCがスリープすると停止。Pro/Maxプランのみ対応。</div>
+  </div>
+
+  <div class="sec-nav">
+    <button class="btn btn-ghost" onclick="go(1)">← チャット</button>
+    <button class="btn btn-primary" onclick="go(3)">コードへ進む →</button>
+  </div>
+</div>
+
+<!-- ===== SEC 3: CODE ===== -->
+<div class="section" id="s3">
+  <div class="sec-head">
+    <div class="sec-icon ic-blue">💻</div>
+    <div><h2>Part 3：コード</h2><p>スラッシュコマンドとMDファイルでClaudeを育てる</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">💻 コードの3つの使い方</div>
+    <p style="margin-bottom:14px;font-size:13px;color:var(--text2)">同じClaude Codeエンジンを、3つの異なる環境で使える。</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(99,85,232,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🖥️</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">デスクトップアプリ <span class="tag tg-g" style="font-size:10px;margin-left:4px">メイン・おすすめ</span></div>
+          <div style="font-size:12px;color:var(--text2)">Claude Desktopアプリの「コード」タブ。インストール不要で即使える。GUIでdiff確認・承認ができる。</div>
+        </div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(74,158,255,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🌐</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">Web（claude.ai/code）<span class="tag tg-b" style="font-size:10px;margin-left:4px">CLIインストール必要</span></div>
+          <div style="font-size:12px;color:var(--text2)">ブラウザ・スマホからコードセッションを操作できる。ただし事前にターミナルでCLIをインストールし、<code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">/web-setup</code>（※）を実行する必要がある。</div>
+        </div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(15,158,106,.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🔌</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">VSCode拡張 <span class="tag tg-a" style="font-size:10px;margin-left:4px">参考程度</span></div>
+          <div style="font-size:12px;color:var(--text2)">VSCodeのエディタ内にClaudeパネルが表示される。エラーの自動認識などのメリットがあるが、デスクトップアプリで十分。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">⬇️ Web・CLIで使うためのCLIインストール手順</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">デスクトップアプリのみ使う場合は不要。Web（claude.ai/code）で使いたい場合は以下でCLIをインストールする。</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px">🍎 Mac / Linux（ターミナル）</div>
+        <div class="code">
+          <button class="copy-btn" onclick="cp(this,event)">copy</button>
+curl -fsSL https://claude.ai/install.sh | bash
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px">🪟 Windows（PowerShell）</div>
+        <div class="code">
+          <button class="copy-btn" onclick="cp(this,event)">copy</button>
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+        </div>
+      </div>
+    </div>
+    <div class="steps" style="margin-top:14px">
+      <div class="step">
+        <div class="step-n done">1</div>
+        <div class="step-b"><strong>上のコマンドをターミナルに貼り付けて実行</strong><span>インストールが自動で完了する</span></div>
+      </div>
+      <div class="step">
+        <div class="step-n done">2</div>
+        <div class="step-b"><strong>ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> と入力してログイン</strong><span>ブラウザが開くのでClaudeアカウントでサインイン</span></div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b">
+          <strong>Web接続セットアップを実行</strong>
+          <span>ターミナルのclaudeセッション内で以下を入力</span>
+          <div class="code" style="margin-top:6px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+/web-setup
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-b"><strong>ブラウザで claude.ai/code を開く</strong><span>ターミナルのセッションがブラウザ上で操作できるようになる</span></div>
+      </div>
+    </div>
+    <div class="warn">⚠️ <code style="font-family:'JetBrains Mono',monospace">/web-setup</code> は実際に試した手順として記載。公式ドキュメントでの正式コマンド名は要確認。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">/ スラッシュコマンド一覧</div>
+    <p style="margin-bottom:12px;font-size:13px;color:var(--text2)">コードタブのパネルで <code style="font-family:'JetBrains Mono',monospace;background:var(--bg3);padding:1px 6px;border-radius:4px">/</code> を入力するだけでメニューが開く。50以上のコマンドがある。</p>
+    <div class="slash-grid">
+      <div class="sc-item"><span class="sc-cmd">/init</span><span class="sc-desc">CLAUDE.mdを自動生成。まず最初に実行</span></div>
+      <div class="sc-item"><span class="sc-cmd">/clear</span><span class="sc-desc">会話履歴をリセット。タスクが変わったら実行</span></div>
+      <div class="sc-item"><span class="sc-cmd">/compact</span><span class="sc-desc">会話を要約してトークンを節約</span></div>
+      <div class="sc-item"><span class="sc-cmd">/doctor</span><span class="sc-desc">環境の診断・エラーチェック</span></div>
+      <div class="sc-item"><span class="sc-cmd">/status</span><span class="sc-desc">現在の設定・MCP接続状況を確認</span></div>
+      <div class="sc-item"><span class="sc-cmd">/mcp</span><span class="sc-desc">MCPサーバーの接続・管理</span></div>
+      <div class="sc-item"><span class="sc-cmd">/memory</span><span class="sc-desc">CLAUDE.mdを直接編集</span></div>
+      <div class="sc-item"><span class="sc-cmd">/カスタム名</span><span class="sc-desc">自分で作ったコマンドを実行 ← これが特徴！</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">📁 3つのMDファイル</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--bg3);border-radius:var(--r-sm);padding:14px">
+        <div style="background:rgba(124,106,247,.18);border-radius:8px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">📝</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--purple2);margin-bottom:3px">CLAUDE.md <span class="tag tg-g" style="font-size:10px;margin-left:4px">最重要</span></div>
+          <div style="font-size:12px;color:var(--text2)">プロジェクトのルートに置く「Claudeへの説明書」。毎セッション自動で読み込まれる。<code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">/init</code> で自動生成。</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--bg3);border-radius:var(--r-sm);padding:14px">
+        <div style="background:rgba(45,212,160,.14);border-radius:8px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">⚡</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:3px">Skills（SKILL.md）</div>
+          <div style="font-size:12px;color:var(--text2)"><code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">.claude/skills/</code> に置く手順書。<code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">/コマンド名</code> で呼び出せる。繰り返しタスクの自動化に使う。</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--bg3);border-radius:var(--r-sm);padding:14px">
+        <div style="background:rgba(74,158,255,.14);border-radius:8px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🤖</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:3px">Subagents</div>
+          <div style="font-size:12px;color:var(--text2)"><code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">.claude/agents/</code> に置く専門タスク用の小さなClaude。独立したコンテキストで動く。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HANDSON 5 -->
+  <div class="ho-card" style="border:1px solid rgba(74,158,255,.28);background:rgba(74,158,255,.03)">
+    <div class="ho-head">
+      <div class="ho-num" style="background:rgba(74,158,255,.18);color:var(--blue)">5</div>
+      <h3>ハンズオン⑤ スラッシュコマンドを体験する</h3>
+      <div class="xp-tag">+20 XP</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2);margin-bottom:14px">
+      <strong style="color:var(--text);display:block;margin-bottom:6px">📦 事前準備：配布ZIPを解凍して確認</strong>
+      <div class="ftree">
+<table style="border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px">
+<tr><td style="color:var(--blue);padding:1px 0">handson-05/</td><td></td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">meeting-notes.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 箇条書きの会議メモ</td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">└── <span style="color:var(--blue)">.claude/</span></td><td></td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:var(--blue)">skills/</span></td><td></td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:var(--blue)">議事録/</span></td><td></td></tr>
+<tr><td style="padding:1px 0;white-space:nowrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:var(--text2)">SKILL.md</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← カスタムコマンドの定義</td></tr>
+</table>
+      </div>
+    </div>
+
+    <div class="ci" onclick="chk(this,'c5a',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">コードタブでフォルダを開き /init を実行</div>
+        <div class="ci-desc">コードタブ → handson-05 フォルダを開く → / を押してメニューを眺める → /init を実行</div>
+        <div class="ci-step" style="color:var(--blue);margin-top:6px">✨ CLAUDE.md が自動生成されるのを確認しよう</div>
+      </div>
+      <span class="tag tg-b">+10 XP</span>
+    </div>
+
+    <div class="ci" onclick="chk(this,'c5b',10)">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">カスタムコマンド /議事録 を実行する</div>
+        <div class="ci-desc">パネルにコピペして送信</div>
+        <div class="ci-step">
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+/議事録
+          </div>
+        </div>
+        <div class="ci-step" style="color:var(--blue);margin-top:6px">✨ meeting-notes.txt を読んで議事録が自動生成されるのを確認。diffビューでAcceptしてみよう</div>
+      </div>
+      <span class="tag tg-b">+10 XP</span>
+    </div>
+  </div>
+
+  <div class="sec-nav">
+    <button class="btn btn-ghost" onclick="go(2)">← Cowork</button>
+    <button class="btn btn-primary" onclick="go(4)">まとめへ進む →</button>
+  </div>
+</div>
+
+<!-- ===== SEC 4: まとめ ===== -->
+<div class="section" id="s4">
+  <div class="sec-head">
+    <div class="sec-icon ic-amber">🏆</div>
+    <div><h2>まとめ</h2><p>勉強会の進行順とポイントをおさらい</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">⏱️ 本日のタイムライン</div>
+    <div style="margin-top:8px">
+      <div class="tl-item" style="background:rgba(124,106,247,.07);border:1px solid rgba(124,106,247,.15)">
+        <div class="tl-num" style="background:rgba(124,106,247,.2);color:var(--purple2)">1</div>
+        <div class="tl-body"><div class="tl-ttl">💬 チャット：プロジェクト設定 + Gmail連携</div><div class="tl-sub">「毎回説明しなくていい！メールも読んでくれた！」</div></div>
+        <span class="tag tg-p">15分</span>
+      </div>
+      <div class="tl-item" style="background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.14);margin-top:6px">
+        <div class="tl-num" style="background:rgba(45,212,160,.18);color:var(--teal)">2</div>
+        <div class="tl-body"><div class="tl-ttl">🤖 Cowork：天気データ → Excelグラフ</div><div class="tl-sub">「ネットから調べてグラフまで作ってくれた！」</div></div>
+        <span class="tag tg-t">15分</span>
+      </div>
+      <div class="tl-item" style="background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.14);margin-top:6px">
+        <div class="tl-num" style="background:rgba(45,212,160,.18);color:var(--teal)">3</div>
+        <div class="tl-body"><div class="tl-ttl">🤖 Cowork：スケジュール実行</div><div class="tl-sub">「明日から毎朝自動で動く！」</div></div>
+        <span class="tag tg-t">10分</span>
+      </div>
+      <div class="tl-item" style="background:rgba(244,114,182,.05);border:1px solid rgba(244,114,182,.15);margin-top:6px">
+        <div class="tl-num" style="background:rgba(244,114,182,.18);color:var(--pink)">4</div>
+        <div class="tl-body"><div class="tl-ttl">📱 Dispatch：スマホから試す</div><div class="tl-sub">「スマホで指示してPCが動いた！」</div></div>
+        <span class="tag tg-pk">15分</span>
+      </div>
+      <div class="tl-item" style="background:rgba(74,158,255,.06);border:1px solid rgba(74,158,255,.15);margin-top:6px">
+        <div class="tl-num" style="background:rgba(74,158,255,.18);color:var(--blue)">5</div>
+        <div class="tl-body"><div class="tl-ttl">💻 コード：/init + カスタムコマンド</div><div class="tl-sub">「/議事録 の一言で議事録が完成した！」</div></div>
+        <span class="tag tg-b">20分</span>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;margin-top:10px;text-align:center">
+        <div style="font-size:11px;color:var(--text2)">合計</div>
+        <div style="font-size:24px;font-weight:700">約 75分</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:3px">+ 質疑応答 15分</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">📦 配布ファイル</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
+        <div style="font-size:12px;font-weight:700;color:var(--purple2);margin-bottom:6px">handson-01.zip</div>
+        <div style="font-size:11px;color:var(--text2)">・company-faq.txt<br>・product-list.txt<br>・email-template.txt</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
+        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">handson-05.zip</div>
+        <div style="font-size:11px;color:var(--text2)">・meeting-notes.txt<br>・.claude/skills/議事録/<br>&nbsp;&nbsp;SKILL.md</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-ttl">⚠️ 注意点・補足</div>
+    <ul>
+      <li>Coworkは現在も<strong>リサーチプレビュー</strong>。監査ログには記録されない</li>
+      <li>Dispatchは<strong>Pro・Maxプランのみ</strong>。Teamには現時点で未対応</li>
+      <li>スケジュール実行は<strong>PCが起動してClaudeが開いている間のみ</strong>動作</li>
+      <li>CLAUDE.md・Skills・SubagentsはCoworkとコードの<strong>両方で共有</strong>される</li>
+      <li>コードタブにVSCodeは<strong>不要</strong>。デスクトップアプリだけで完結</li>
+    </ul>
+  </div>
+
+  <div class="final-card" id="finalCard">
+    <div style="font-size:48px">🏆</div>
+    <h3>勉強会コンプリート！</h3>
+    <p>全ハンズオンをクリアしました。おめでとうございます！</p>
+  </div>
+
+  <div class="sec-nav">
+    <button class="btn btn-ghost" onclick="go(3)">← コード</button>
+    <button class="btn btn-ghost" onclick="go(0)">最初から 🔄</button>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-ico" id="t-ico">⭐</div>
+  <div><div class="toast-ttl" id="t-ttl">クリア！</div><div class="toast-desc" id="t-desc">+10 XP</div></div>
+</div>
+
+<script>
+const TOTAL_XP = 110;
+const CHECKS = {};
+let xp = 0;
+const LEVELS = [
+  {xp:0,  lbl:'🌱 Claude 見習い'},
+  {xp:20, lbl:'💬 チャット マスター'},
+  {xp:40, lbl:'🤖 Cowork 使い手'},
+  {xp:60, lbl:'📱 Dispatch 達人'},
+  {xp:80, lbl:'💻 コード 職人'},
+  {xp:100,lbl:'🏆 Claude マスター'},
+];
+const ALL_CHECKS = 9;
+
+function dlPage() {
+  const html = document.documentElement.outerHTML;
+  const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'claude-desktop-handson.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function go(i) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('s'+i).classList.add('active');
+  document.getElementById('tab'+i).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function chk(el,id,pts) {
+  if(CHECKS[id]) {
+    // キャンセル
+    delete CHECKS[id];
+    el.classList.remove('done');
+    xp = Math.max(xp-pts, 0);
+    updXP(); updGP(); updTabs();
+    document.getElementById('finalCard').style.display='none';
+  } else {
+    CHECKS[id] = true;
+    el.classList.add('done');
+    xp = Math.min(xp+pts, TOTAL_XP);
+    updXP(); updGP(); updTabs();
+    toast('+'+ pts +' XP 獲得！', el.querySelector('.ci-ttl').textContent);
+    if(Object.keys(CHECKS).length >= ALL_CHECKS) {
+      setTimeout(()=>{ document.getElementById('finalCard').style.display='block'; },600);
+    }
+  }
+}
+
+function updXP() {
+  document.getElementById('xp-bar').style.width = xp+'%';
+  document.getElementById('xp-lbl').textContent = xp+' / '+TOTAL_XP+' XP';
+  const lv = LEVELS.filter(l=>xp>=l.xp).pop();
+  const lvi = LEVELS.indexOf(lv)+1;
+  document.getElementById('lv-num').textContent = lvi;
+  document.getElementById('lv-lbl').textContent = lv.lbl;
+}
+
+function updGP() {
+  const n = Object.keys(CHECKS).length;
+  const p = Math.round(n/ALL_CHECKS*100);
+  document.getElementById('gp-bar').style.width = p+'%';
+  document.getElementById('gp-pct').textContent = p+'%';
+}
+
+function updTabs() {
+  const map = {1:['c1a','c1b','c1c','c1d'], 2:['c2a'], 3:['c3a'], 4:['c4a'], 3:['c5a','c5b']};
+  const secMap = {
+    'tab1':['c1a','c1b','c1c','c1c2','c1d'],
+    'tab2':['c2a','c3a','c4a'],
+    'tab3':['c5a','c5b'],
+  };
+  for(const [tab,ids] of Object.entries(secMap)) {
+    if(ids.every(id=>CHECKS[id])) document.getElementById(tab).classList.add('done');
+  }
+}
+
+let toastTmr;
+function toast(ttl,desc) {
+  const t = document.getElementById('toast');
+  document.getElementById('t-ttl').textContent = ttl;
+  document.getElementById('t-desc').textContent = desc.substring(0,30);
+  t.classList.add('show');
+  clearTimeout(toastTmr);
+  toastTmr = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+function cp(btn,e) {
+  e.stopPropagation();
+  const code = btn.parentElement;
+  const txt = code.childNodes[code.childNodes.length-1].textContent.trim();
+  const done = () => {
+    btn.textContent='コピー済み ✓';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='copy'; btn.classList.remove('copied'); },1800);
+  };
+  if(navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(txt).then(done).catch(()=>fallback(txt,done));
+  } else {
+    fallback(txt,done);
+  }
+}
+function fallback(txt,done) {
+  const ta = document.createElement('textarea');
+  ta.value = txt;
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); done(); } catch(err) { alert('手動でコピーしてください'); }
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>
