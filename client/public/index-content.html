@@ -1015,10 +1015,93 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
   </div>
 
   <!-- HANDSON 5 -->
+  <div class="ho-card" style="border:1px solid rgba(124,106,247,.28);background:rgba(124,106,247,.03)">
+    <div class="ho-head">
+      <div class="ho-num" style="background:rgba(124,106,247,.18);color:var(--purple2)">5</div>
+      <h3>ハンズオン⑤ 要件定義から3役割でアプリを作ってみよう</h3>
+      <div class="xp-tag">+20 XP</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">「何を作るか」を決めてから、要件定義→計画→実装→評価のサイクルをClaude Codeに一気に屋ってもらう。「AIが開発プロセス全体を担える」ことを体感しよう。</p>
+
+    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;margin-bottom:14px">
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px">💡 作るもののアイデア例（自分の業務に合わせて選んでOK）</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
+        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;color:var(--text2)">&#x1f4ca; 見積もり計算機（単価×数量→合計）</div>
+        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;color:var(--text2)">&#x2705; タスク管理ツール（今日のチェックリスト）</div>
+        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;color:var(--text2)">&#x23f1;&#xfe0f; ポモドーロタイマー（25分作業×5回）</div>
+        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;color:var(--text2)">&#x1f4dd; 日報テンプレート生成ツール</div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-b">
+          <strong>作りたいものを一行で決める</strong>
+          <span>上のアイデアから選ぶか、自分の業務で使えるものを自由に考える</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-b">
+          <strong>要件定義を依頼する</strong>
+          <span>Claude Codeのチャットに以下を貼り付けて送信</span>
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+以下のツールを作りたい。要件定義書を日本語で作成して。
+ツール：[作りたいものを記入]          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b">
+          <strong>3役割で実装を依頼する</strong>
+          <span>要件定義書ができたら、続けて以下を送信</span>
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+あなたは計画者・実装者・評価者の3つの役割を順番に担ってください。
+
+①計画者：先ほどの要件定義書を元に、実装計画（ファイル構成・使用技術・実装順序）を策定する
+②実装者：計画に従ってHTMLファイルを1つ作成する（外部ライブラリ不要、単一ファイルで完結）
+③評価者：実装したファイルをレビューし、動作確認と改善点を列挙する          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-b">
+          <strong>生成されたファイルをブラウザで開く</strong>
+          <span>Finderで生成されたファイルをダブルクリック→ ブラウザで動作確認</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div class="step-b">
+          <strong>改善を依頼する（オプション）</strong>
+          <span>評価者の指摘を元に、「評価者の指摘を元に修正して」と依頼するだけで再実装される</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;padding:12px 14px;background:rgba(124,106,247,.06);border-left:3px solid var(--purple2);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:12px;color:var(--text2)">
+      <strong style="color:var(--text);display:block;margin-bottom:4px">💡 ポイント</strong>
+      要件定義の段階で「こんな機能も欲しい」と追加するだけで、自動で設計に盛り込まれる。要件定義が丁寧なほど、完成度が高いアプリになる。
+    </div>
+
+    <div class="ci" onclick="chk(this,'hs5_app',20)" style="margin-top:14px">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">アプリを作ってブラウザで動作を確認した</div>
+        <div class="ci-desc">HTMLファイルが生成され、ブラウザで開いたらクリア</div>
+      </div>
+      <span class="tag tg-p">+20 XP</span>
+    </div>
+  </div>
+
+  <!-- HANDSON 6 (former 5) -->
   <div class="ho-card" style="border:1px solid rgba(74,158,255,.28);background:rgba(74,158,255,.03)">
     <div class="ho-head">
-      <div class="ho-num" style="background:rgba(74,158,255,.18);color:var(--blue)">5</div>
-      <h3>ハンズオン⑤ 既存コードを分析してREADMEを作ってみよう</h3>
+      <div class="ho-num" style="background:rgba(74,158,255,.18);color:var(--blue)">6</div>
+      <h3>ハンズオン⑥ 既存コードを分析してREADMEを作ってみよう</h3>
       <div class="xp-tag">+20 XP</div>
     </div>
     <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2);margin-bottom:14px">
@@ -1157,7 +1240,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
 </div>
 
 <script>
-const TOTAL_XP = 110;
+const TOTAL_XP = 130;
 const CHECKS = {};
 let xp = 0;
 const LEVELS = [
@@ -1168,7 +1251,7 @@ const LEVELS = [
   {xp:80, lbl:'💻 コード 職人'},
   {xp:100,lbl:'🏆 Claude マスター'},
 ];
-const ALL_CHECKS = 11;
+const ALL_CHECKS = 12;
 
 function dlPage() {
   const html = document.documentElement.outerHTML;
