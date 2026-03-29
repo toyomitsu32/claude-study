@@ -957,56 +957,55 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   </div>
 
   <div class="card">
-    <div class="card-ttl">⬇️ Web・CLIで使うためのCLIインストール手順</div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">デスクトップアプリのみ使う場合は不要。Web（claude.ai/code）で使いたい場合は以下でCLIをインストールする。</p>
-    <div style="display:flex;flex-direction:column;gap:12px">
-      <div>
-        <div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:6px">🍎 Mac（ターミナル）</div>
-        <div class="code">
-          <button class="copy-btn" onclick="cp(this,event)">copy</button>
-curl -fsSL https://claude.ai/install.sh | bash
-        </div>
-      </div>
-
+    <div class="card-ttl">⬇️ Claude Code CLI のインストール手順</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">デスクトップアプリ・Web どちらで使う場合も、まず CLI をインストールする必要がある。ターミナルを起動して以下の手順を進めよう。</p>
+    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:10px 14px;font-size:12px;color:var(--text2);margin-bottom:14px">
+      <strong style="color:var(--text)">🖥️ ターミナルの起動方法（Mac）</strong><br>
+      「<strong>Command ⌘ + スペース</strong>」で Spotlight を開き、「<strong>ターミナル</strong>」と入力して Enter
     </div>
-    <div class="steps" style="margin-top:14px">
+    <div class="steps">
       <div class="step">
         <div class="step-n done">1</div>
-        <div class="step-b"><strong>上のコマンドをターミナルに貼り付けて実行</strong><span>インストールが自動で完了する</span><div style="margin-top:8px;padding:8px 10px;background:var(--bg3);border-radius:6px;font-size:12px;color:var(--text2)"><strong style="color:var(--text)">🖥️ ターミナルの起動方法（Mac）</strong><br>「Command ⌘ + スペース」で Spotlight を開き、「ターミナル」と入力して Enter</div></div>
+        <div class="step-b">
+          <strong>ターミナルで curl コマンドを実行する</strong>
+          <span>以下をコピーしてターミナルに貼り付け、Enter を押す。インストールが自動で完了する。</span>
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+curl -fsSL https://claude.ai/install.sh | bash
+          </div>
+        </div>
       </div>
       <div class="step">
         <div class="step-n done">2</div>
         <div class="step-b">
-          <strong>PATHを設定する</strong>
-          <span><code style="font-family:'JetBrains Mono',monospace">claude</code> コマンドをどこからでも呼び出せるようにする</span>
-          <div class="code" style="margin-top:6px">
+          <strong>PATH を通す（パスを設定する）</strong>
+          <span><code style="font-family:'JetBrains Mono',monospace">claude</code> コマンドをどこからでも呼び出せるようにする。以下をコピーして実行する。</span>
+          <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zshrc
           </div>
-          <div style="margin-top:6px;font-size:11px;color:var(--text3)">※ PATHの設定例。インストール後に <code style="font-family:'JetBrains Mono',monospace">claude</code> が見つからない場合に実行する</div>
         </div>
       </div>
       <div class="step">
         <div class="step-n done">3</div>
-        <div class="step-b"><strong>ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> と入力してログイン</strong><span>ブラウザが開くのでClaudeアカウントでサインイン</span></div>
+        <div class="step-b">
+          <strong>Claude Desktop アプリを起動する</strong>
+          <span>インストール後、デスクトップアプリを起動すると「コード」タブが使えるようになる。</span>
+        </div>
       </div>
       <div class="step">
         <div class="step-n">4</div>
         <div class="step-b">
-          <strong>Web接続セットアップを実行</strong>
-          <span>ターミナルのclaudeセッション内で以下を入力</span>
-          <div class="code" style="margin-top:6px">
+          <strong>（Web でも使いたい場合）<code style="font-family:'JetBrains Mono',monospace">/web-setup</code> を実行する</strong>
+          <span>ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> と入力してログイン後、claudeセッション内で以下を入力する。</span>
+          <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
 /web-setup
           </div>
+          <div style="margin-top:6px;font-size:11px;color:var(--text3)">実行後は <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">claude.ai/code</a> をブラウザで開くとWebからも操作できる</div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-n">5</div>
-        <div class="step-b"><strong>ブラウザで claude.ai/code を開く</strong><span>ターミナルのセッションがブラウザ上で操作できるようになる</span></div>
-      </div>
     </div>
-    <div class="warn">⚠️ <code style="font-family:'JetBrains Mono',monospace">/web-setup</code> は実際に試した手順として記載。公式ドキュメントでの正式コマンド名は要確認。</div>
   </div>
 
   <div class="card">
