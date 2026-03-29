@@ -35,7 +35,20 @@ jobs:
 
       - name: Remove Manus debug scripts and create 404.html
         run: |
-          sed -i '/__manus__/d' dist/public/index.html
+          python3 -c "
+          import re
+          with open('dist/public/index.html', 'r') as f:
+              content = f.read()
+          # Remove manus-runtime script block (multi-line)
+          content = re.sub(r'<script id=\"manus-runtime\">.*?</script>', '', content, flags=re.DOTALL)
+          # Remove __manus__ script tags
+          content = re.sub(r'<script[^>]*__manus__[^>]*></script>', '', content)
+          # Remove VITE_ANALYTICS_ENDPOINT script tags
+          content = re.sub(r'<script[^>]*%VITE_ANALYTICS_ENDPOINT%[^>]*></script>', '', content)
+          with open('dist/public/index.html', 'w') as f:
+              f.write(content)
+          print('Manus scripts removed')
+          "
           cp dist/public/index.html dist/public/404.html
 
       - name: Deploy to gh-pages
