@@ -1231,6 +1231,86 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
     </div>
   </div>
 
+  <!-- HANDSON 6 -->
+  <div class="ho-card" style="border:1px solid rgba(45,212,160,.28);background:rgba(45,212,160,.03)">
+    <div class="ho-head">
+      <div class="ho-num" style="background:rgba(45,212,160,.18);color:var(--teal)">6</div>
+      <h3>ハンズオン⑥ 自分専用スキルを作ってみよう</h3>
+      <div class="xp-tag">+20 XP</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">スキル（SKILL.md）を作ると、<code style="font-family:'JetBrains Mono',monospace;background:var(--bg3);padding:1px 5px;border-radius:3px">/コマンド名</code> を打つだけで繰り返し作業をClaudeに任せられる。ここでは「日報を書くスキル」を例に、スキルファイルの作り方を体験しよう。</p>
+
+    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;margin-bottom:14px">
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px">💡 スキルの仕組み</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--text2)">
+        <div style="background:var(--bg2);border-radius:6px;padding:8px 12px;border:1px solid var(--border)"><code style="font-family:'JetBrains Mono',monospace">.claude/skills/</code><br><span style="font-size:11px">スキルフォルダ</span></div>
+        <div style="font-size:16px">→</div>
+        <div style="background:var(--bg2);border-radius:6px;padding:8px 12px;border:1px solid var(--border)"><code style="font-family:'JetBrains Mono',monospace">日報.md</code><br><span style="font-size:11px">スキルファイル</span></div>
+        <div style="font-size:16px">→</div>
+        <div style="background:rgba(45,212,160,.1);border-radius:6px;padding:8px 12px;border:1px solid rgba(45,212,160,.25)"><code style="font-family:'JetBrains Mono',monospace;color:var(--teal)">/日報</code> と入力<br><span style="font-size:11px">スキルが実行される</span></div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-b">
+          <strong>スキルファイルの置き場所を確認する</strong>
+          <span>コードタブで作業しているプロジェクトフォルダに <code style="font-family:'JetBrains Mono',monospace">.claude/skills/</code> フォルダがあるか確認。なければClaudeに作ってもらう。</span>
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+.claude/skills/ フォルダを作って          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-b">
+          <strong>スキルファイルを作ってもらう</strong>
+          <span>「日報を書くスキル」を例に、Claudeにスキルファイルを作成してもらう</span>
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+.claude/skills/日報.md というスキルファイルを作って。
+
+内容：
+- スキル名：日報
+- 説明：今日やったこと・明日やること・困っていることを聞いて、日報形式でまとめる
+- 手順：①今日の作業内容を質問する ②明日の予定を質問する ③困っていることを質問する ④日報テンプレートに当てはめて出力する          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-b">
+          <strong>スキルを呼び出してみる</strong>
+          <span>コードタブのチャットに <code style="font-family:'JetBrains Mono',monospace">/日報</code> と入力して送信。スキルが起動してClaudeが質問してくれる。</span>
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+/日報          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-b">
+          <strong>（応用）自分の業務に合わせたスキルを作る</strong>
+          <span>「週報」「議事録」「メール返信」など、毎回やっている作業をスキル化してみよう。スキルファイルは自由に追加できる。</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;padding:12px 14px;background:rgba(45,212,160,.06);border-left:3px solid var(--teal);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:12px;color:var(--text2)">
+      <strong style="color:var(--text);display:block;margin-bottom:4px">💡 ポイント</strong>
+      スキルファイルは普通のMarkdownなので、プログラミング不要。「Claudeにどう動いてほしいか」を日本語で書くだけでOK。一度作ればずっと使い回せる。
+    </div>
+
+    <div class="ci" onclick="chk(this,'hs6_skill',20)" style="margin-top:14px">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">/日報 スキルを呼び出してClaude に質問してもらった</div>
+        <div class="ci-desc">スキルが起動してClaudeが作業内容を聞いてきたらクリア</div>
+      </div>
+      <span class="tag tg-t">+20 XP</span>
+    </div>
+  </div>
+
   <div class="sec-nav">
     <button class="btn btn-ghost" onclick="go(2)">← Cowork</button>
     <button class="btn btn-primary" onclick="go(4)">まとめへ進む →</button>
@@ -1272,9 +1352,14 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
         <div class="tl-body"><div class="tl-ttl">💻 コード：3役割でアプリを作ってみよう</div><div class="tl-sub">「計画者・実装者・評価者で品質が上がった！」</div></div>
         <span class="tag tg-b">20分</span>
       </div>
+      <div class="tl-item" style="background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.15);margin-top:6px">
+        <div class="tl-num" style="background:rgba(45,212,160,.18);color:var(--teal)">6</div>
+        <div class="tl-body"><div class="tl-ttl">⚡ コード：自分専用スキルを作ってみよう</div><div class="tl-sub">「/日報と打つだけでClaudeが質問してくれた！」</div></div>
+        <span class="tag tg-t">15分</span>
+      </div>
       <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;margin-top:10px;text-align:center">
         <div style="font-size:11px;color:var(--text2)">合計</div>
-        <div style="font-size:24px;font-weight:700">約 75分</div>
+        <div style="font-size:24px;font-weight:700">約 90分</div>
         <div style="font-size:11px;color:var(--text3);margin-top:3px">+ 質疑応答 15分</div>
       </div>
     </div>
@@ -1322,7 +1407,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
 </div>
 
 <script>
-const TOTAL_XP = 120;
+const TOTAL_XP = 140;
 const LEVELS = [
   {xp:0,  lbl:'🌱 Claude 見習い'},
   {xp:20, lbl:'💬 チャット マスター'},
@@ -1331,7 +1416,7 @@ const LEVELS = [
   {xp:80, lbl:'💻 コード 職人'},
   {xp:100,lbl:'🏆 Claude マスター'},
 ];
-const ALL_CHECKS = 11;
+const ALL_CHECKS = 12;
 const LS_KEY = 'claude-study-progress';
 
 // localStorage から進捗を復元
@@ -1403,7 +1488,7 @@ function updTabs() {
   const secMap = {
     'tab1':['c1a','c1b','c1c','c1c2','c1d'],
     'tab2':['c2a','c3a','c4a'],
-    'tab3':['hs5_app'],
+    'tab3':['hs5_app','hs6_skill'],
   };
   for(const [tab,ids] of Object.entries(secMap)) {
     if(ids.every(id=>CHECKS[id])) document.getElementById(tab).classList.add('done');
