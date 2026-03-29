@@ -1133,54 +1133,6 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
     </div>
   </div>
 
-  <!-- HANDSON 6 (former 5) -->
-  <div class="ho-card" style="border:1px solid rgba(74,158,255,.28);background:rgba(74,158,255,.03)">
-    <div class="ho-head">
-      <div class="ho-num" style="background:rgba(74,158,255,.18);color:var(--blue)">6</div>
-      <h3>ハンズオン⑥ 既存コードを分析してREADMEを作ってみよう</h3>
-      <div class="xp-tag">+20 XP</div>
-    </div>
-    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2);margin-bottom:14px">
-      <strong style="color:var(--text);display:block;margin-bottom:6px">📦 事前準備：配布ZIPを解凍して確認</strong>
-      <div class="ftree">
-<table style="border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px">
-<tr><td style="color:var(--blue);padding:1px 0">05_ClaudeCode分析用サンプル/</td><td></td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">package.json</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← Node.js設定</td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--blue)">src/</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← Express.jsソース</td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--blue)">docs/</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← API仕様書</td></tr>
-<tr><td style="padding:1px 0;white-space:nowrap">└── <span style="color:var(--blue)">tests/</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← テストコード</td></tr>
-</table>
-      </div>
-      <div style="margin-top:8px;padding:8px;background:var(--bg2);border-radius:6px;border:1px solid var(--border);font-size:11px;color:var(--text2)">※ タスク管理APIのサンプルプロジェクト（Express.js）。コード不要でドキュメント生成・整理を体験できる</div>
-    </div>
-
-    <div class="ci" onclick="chk(this,'c5a',10)">
-      <div class="cb"><span class="ck">✓</span></div>
-      <div class="ci-body">
-        <div class="ci-ttl">コードタブでフォルダを開き /init を実行</div>
-        <div class="ci-desc">コードタブ → <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 4px;border-radius:3px">05_ClaudeCode分析用サンプル/</code> フォルダを開く → <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 4px;border-radius:3px">/</code> を押してメニューを眺める → <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 4px;border-radius:3px">/init</code> を実行</div>
-        <div class="ci-step" style="color:var(--blue);margin-top:6px">✨ CLAUDE.md が自動生成されるのを確認しよう</div>
-      </div>
-      <span class="tag tg-b">+10 XP</span>
-    </div>
-
-    <div class="ci" onclick="chk(this,'c5b',10)">
-      <div class="cb"><span class="ck">✓</span></div>
-      <div class="ci-body">
-        <div class="ci-ttl">日本語READMEを自動生成させる</div>
-        <div class="ci-desc">パネルにコピペして送信</div>
-        <div class="ci-step">
-          <div class="code" style="margin-top:8px">
-            <button class="copy-btn" onclick="cp(this,event)">copy</button>
-このフォルダの構成を説明して、READMEを日本語で作って
-          </div>
-        </div>
-        <div class="ci-step" style="color:var(--blue);margin-top:6px">✨ コード不要でREADME.mdが自動生成されるのを確認。diffビューでAcceptしてみよう</div>
-      </div>
-      <span class="tag tg-b">+10 XP</span>
-    </div>
-  </div>
-
   <div class="sec-nav">
     <button class="btn btn-ghost" onclick="go(2)">← Cowork</button>
     <button class="btn btn-primary" onclick="go(4)">まとめへ進む →</button>
@@ -1219,7 +1171,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
       </div>
       <div class="tl-item" style="background:rgba(74,158,255,.06);border:1px solid rgba(74,158,255,.15);margin-top:6px">
         <div class="tl-num" style="background:rgba(74,158,255,.18);color:var(--blue)">5</div>
-        <div class="tl-body"><div class="tl-ttl">💻 コード：/init + READMEを日本語で自動生成</div><div class="tl-sub">「コード不要でREADMEが完成した！」</div></div>
+        <div class="tl-body"><div class="tl-ttl">💻 コード：3役割でアプリを作ってみよう</div><div class="tl-sub">「計画者・実装者・評価者で品質が上がった！」</div></div>
         <span class="tag tg-b">20分</span>
       </div>
       <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;margin-top:10px;text-align:center">
@@ -1255,6 +1207,12 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
     </ul>
   </div>
 
+  <div class="card" style="border:1px solid rgba(45,212,160,.3);background:rgba(45,212,160,.05);text-align:center;padding:28px 20px;margin-bottom:14px">
+    <div style="font-size:36px;margin-bottom:12px">🎉</div>
+    <div style="font-size:20px;font-weight:700;margin-bottom:10px">おつかれさまでした！</div>
+    <p style="font-size:15px;color:var(--text2);line-height:1.8;margin:0">習うより慣れろ——<br>どんどん使って慣れていきましょう！</p>
+  </div>
+
   <div class="final-card" id="finalCard">
     <div style="font-size:48px">🏆</div>
     <h3>勉強会コンプリート！</h3>
@@ -1276,7 +1234,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
 </div>
 
 <script>
-const TOTAL_XP = 140;
+const TOTAL_XP = 120;
 const CHECKS = {};
 let xp = 0;
 const LEVELS = [
@@ -1287,7 +1245,7 @@ const LEVELS = [
   {xp:80, lbl:'💻 コード 職人'},
   {xp:100,lbl:'🏆 Claude マスター'},
 ];
-const ALL_CHECKS = 13;
+const ALL_CHECKS = 11;
 
 function dlPage() {
   const html = document.documentElement.outerHTML;
@@ -1344,11 +1302,10 @@ function updGP() {
 }
 
 function updTabs() {
-  const map = {1:['c1a','c1b','c1c','c1d'], 2:['c2a'], 3:['c3a'], 4:['c4a'], 3:['c5a','c5b']};
   const secMap = {
     'tab1':['c1a','c1b','c1c','c1c2','c1d'],
     'tab2':['c2a','c3a','c4a'],
-    'tab3':['c5a','c5b'],
+    'tab3':['hs5_app'],
   };
   for(const [tab,ids] of Object.entries(secMap)) {
     if(ids.every(id=>CHECKS[id])) document.getElementById(tab).classList.add('done');
