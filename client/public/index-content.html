@@ -809,6 +809,43 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     </div>
   </a>
 
+  <!-- Dispatch事前設定 -->
+  <div class="card" style="margin-top:14px">
+    <div class="card-ttl">⚙️ Dispatch を使う前に設定しよう</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Dispatch（Cowork）がブラウザ操作・マウス・キーボードを使えるよう、デスクトップアプリの設定を事前にONにしておく。</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(45,212,160,.14);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🌐</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">ブラウザ使用 <span class="tag tg-g" style="font-size:10px;margin-left:4px">ON にする</span></div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:6px">Claudeが確認なしにChromeで任意のWebサイトを閲覧・操作できるようになる</div>
+          <div style="font-size:12px;padding:8px 10px;background:var(--bg);border-radius:6px;color:var(--text2)">
+            設定 → <strong style="color:var(--text)">デスクトップアプリ → 一般</strong> → 「すべてのブラウザアクションを許可」をON
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(74,158,255,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🖥️</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">コンピュータ使用 <span class="tag tg-b" style="font-size:10px;margin-left:4px">ON にする</span></div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:6px">Claudeがスクリーンショットを撮影し、キーボードとマウスを操作できるようになる</div>
+          <div style="font-size:12px;padding:8px 10px;background:var(--bg);border-radius:6px;color:var(--text2)">
+            設定 → <strong style="color:var(--text)">デスクトップアプリ → 一般</strong> → 「コンピュータ使用」をON
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="warn" style="margin-top:12px">⚠️ 「すべてのブラウザアクションを許可」はデータを危険にさらす可能性があると表示される。ハンズオン中のみONにして、終了後にOFFに戻すことを推奨。</div>
+    <div class="ci" onclick="chk(this,'dispatch_setup',10)" style="margin-top:12px">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">ブラウザ使用・コンピュータ使用をONにした</div>
+        <div class="ci-desc">設定 → デスクトップアプリ → 一般 で2つともON</div>
+      </div>
+      <span class="tag tg-g">+10 XP</span>
+    </div>
+  </div>
+
   <!-- HANDSON 4 -->
   <div class="ho-card" style="border:1px solid rgba(244,114,182,.25);background:rgba(244,114,182,.03);margin-top:14px">
     <div class="ho-head">
@@ -1240,7 +1277,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
 </div>
 
 <script>
-const TOTAL_XP = 130;
+const TOTAL_XP = 140;
 const CHECKS = {};
 let xp = 0;
 const LEVELS = [
@@ -1251,7 +1288,7 @@ const LEVELS = [
   {xp:80, lbl:'💻 コード 職人'},
   {xp:100,lbl:'🏆 Claude マスター'},
 ];
-const ALL_CHECKS = 12;
+const ALL_CHECKS = 13;
 
 function dlPage() {
   const html = document.documentElement.outerHTML;
