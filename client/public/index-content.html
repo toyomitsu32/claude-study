@@ -1294,16 +1294,6 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-ttl">⚠️ 注意点・補足</div>
-    <ul>
-      <li>Coworkは現在も<strong>リサーチプレビュー</strong>。監査ログには記録されない</li>
-      <li>Dispatchは<strong>Pro・Maxプランのみ</strong>。Teamには現時点で未対応</li>
-      <li>スケジュール実行は<strong>PCが起動してClaudeが開いている間のみ</strong>動作</li>
-      <li>CLAUDE.md・Skills・SubagentsはCoworkとコードの<strong>両方で共有</strong>される</li>
-      <li>コードタブにVSCodeは<strong>不要</strong>。デスクトップアプリだけで完結</li>
-    </ul>
-  </div>
 
   <div class="card" style="border:1px solid rgba(45,212,160,.3);background:rgba(45,212,160,.05);text-align:center;padding:28px 20px;margin-bottom:14px">
     <div style="font-size:36px;margin-bottom:12px">🎉</div>
@@ -1333,8 +1323,6 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
 
 <script>
 const TOTAL_XP = 120;
-const CHECKS = {};
-let xp = 0;
 const LEVELS = [
   {xp:0,  lbl:'🌱 Claude 見習い'},
   {xp:20, lbl:'💬 チャット マスター'},
@@ -1344,6 +1332,16 @@ const LEVELS = [
   {xp:100,lbl:'🏆 Claude マスター'},
 ];
 const ALL_CHECKS = 11;
+const LS_KEY = 'claude-study-progress';
+
+// localStorage から進捗を復元
+const _saved = (() => { try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch(e) { return {}; } })();
+const CHECKS = _saved.checks || {};
+let xp = _saved.xp || 0;
+
+function saveProgress() {
+  try { localStorage.setItem(LS_KEY, JSON.stringify({checks: CHECKS, xp})); } catch(e) {}
+}
 
 function dlPage() {
   const html = document.documentElement.outerHTML;
@@ -1370,12 +1368,14 @@ function chk(el,id,pts) {
     el.classList.remove('done');
     xp = Math.max(xp-pts, 0);
     updXP(); updGP(); updTabs();
+    saveProgress();
     document.getElementById('finalCard').style.display='none';
   } else {
     CHECKS[id] = true;
     el.classList.add('done');
     xp = Math.min(xp+pts, TOTAL_XP);
     updXP(); updGP(); updTabs();
+    saveProgress();
     toast('+'+ pts +' XP 獲得！', el.querySelector('.ci-ttl').textContent);
     if(Object.keys(CHECKS).length >= ALL_CHECKS) {
       setTimeout(()=>{ document.getElementById('finalCard').style.display='block'; },600);
@@ -1445,6 +1445,21 @@ function fallback(txt,done) {
   try { document.execCommand('copy'); done(); } catch(err) { alert('手動でコピーしてください'); }
   document.body.removeChild(ta);
 }
+
+// ページロード時に localStorage から進捗を復元
+document.addEventListener('DOMContentLoaded', () => {
+  // チェックボックスの状態を復元
+  for (const id of Object.keys(CHECKS)) {
+    const el = document.querySelector(`.ci[onclick*="'${id}'"]`);
+    if (el) el.classList.add('done');
+  }
+  // XP・バー・タブを更新
+  updXP(); updGP(); updTabs();
+  // 全チェック済みならファイナルカードを表示
+  if (Object.keys(CHECKS).length >= ALL_CHECKS) {
+    document.getElementById('finalCard').style.display = 'block';
+  }
+});
 </script>
 </body>
 </html>
