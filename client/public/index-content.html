@@ -839,17 +839,17 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       <div class="xp-tag">+10 XP</div>
     </div>
     <div style="background:var(--bg3);border-radius:var(--r-sm);padding:10px;font-size:12px;color:var(--text2);margin-bottom:14px">
-      <strong style="color:var(--text)">事前準備：</strong> リベシティの自分のプロフィールページを開き、過去約1ヶ月分のつぶやきをコピペしてテキストファイル（tweets.txt）に保存しておく
+      <strong style="color:var(--text)">事前準備：</strong> リベシティにログイン済みの状態にしておく（Claudeが <a href="https://libecity.com/tweet/my" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">libecity.com/tweet/my</a> にアクセスして取得する）
     </div>
     <div class="ci" onclick="chk(this,'c2a',10)">
       <div class="cb"><span class="ck">✓</span></div>
       <div class="ci-body">
         <div class="ci-ttl">つぶやきを集計・グラフ化して投稿改善案をもらう</div>
-        <div class="ci-desc">Coworkタブ → tweets.txt をフォルダ指定 → コピペして送信</div>
+        <div class="ci-desc">Coworkタブ → リベシティにログイン済みの状態で → コピペして送信</div>
         <div class="ci-step">
           <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
-添付の tweets.txt は、私がリベシティの「つぶやき」機能に投稿した過去約1ヶ月分の内容です。以下をお願いします。
+https://libecity.com/tweet/my を開いて、私のリベシティ「つぶやき」の過去約1ヶ月分を取得してください。取得できたら以下をお願いします。
 
 1. 投稿内容をカテゴリ分類（学び・日常・仕事・雑談など）して集計する
 2. カテゴリ別の投稿数と割合を円グラフで見える化する（グラフ.html）
@@ -932,9 +932,19 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         <div style="background:rgba(74,158,255,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🖥️</div>
         <div style="flex:1">
           <div style="font-size:13px;font-weight:700;margin-bottom:4px">コンピュータ使用 <span class="tag tg-b" style="font-size:10px;margin-left:4px">ON にする</span></div>
-          <div style="font-size:12px;color:var(--text2);margin-bottom:6px">Claudeがスクリーンショットを撮影し、キーボードとマウスを操作できるようになる</div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:6px">Claudeがスクリーンショットを撒影し、キーボードとマウスを操作できるようになる</div>
           <div style="font-size:12px;padding:8px 10px;background:var(--bg);border-radius:6px;color:var(--text2)">
             設定 → <strong style="color:var(--text)">デスクトップアプリ → 一般</strong> → 「コンピュータ使用」をON
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(251,191,36,.15);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">⚙️</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px">macOS アクセシビリティの許可 <span class="tag" style="font-size:10px;margin-left:4px;background:rgba(251,191,36,.2);color:#b45309">必須</span></div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:6px">Dispatchがマウス・キーボードを操作するために、macOS側でClaude.appを許可する必要がある</div>
+          <div style="font-size:12px;padding:8px 10px;background:var(--bg);border-radius:6px;color:var(--text2);line-height:1.8">
+            Macの <strong style="color:var(--text)">システム設定</strong> を開く → <strong style="color:var(--text)">プライバシーとセキュリティ → アクセシビリティ</strong> → リストの中の <strong style="color:var(--text)">Claude.app</strong> のチェックをONにする
           </div>
         </div>
       </div>
