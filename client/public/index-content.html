@@ -39,7 +39,9 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(99,85,232,.08);border:1px solid rgba(99,85,232,.18);border-radius:100px;padding:5px 16px;font-size:11px;letter-spacing:.1em;color:var(--purple);margin-bottom:20px;font-family:'JetBrains Mono',monospace}
 .hero h1{font-size:clamp(26px,5vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
 .hero h1 span{background:linear-gradient(135deg,#1a1b2e 0%,var(--purple) 50%,var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{color:var(--text2);font-size:14px;max-width:500px;margin:0 auto 36px}
+.hero-sub{color:var(--text2);font-size:14px;max-width:600px;margin:0 auto 20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:640px){.hero-sub{white-space:normal;text-overflow:unset;overflow:visible}}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(251,146,60,.15),rgba(239,68,68,.12));border:1px solid rgba(251,146,60,.35);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:#ea580c;letter-spacing:.06em;margin-bottom:28px}
 
 /* GLOBAL PROGRESS */
 .gp-wrap{max-width:460px;margin:0 auto}
@@ -239,6 +241,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   <div class="hero-eyebrow">🎮 ハンズオン勉強会ガイド</div>
   <h1><span>Claude Desktop 導入ハンズオン</span></h1>
   <p class="hero-sub">習うより慣れろ——初期設定をして、Cowork・コード・Dispatchをどんどん使っていこう！</p>
+  <div class="hero-badge">🏠 リベシティ限定</div>
   <div class="gp-wrap">
     <div class="gp-top">
       <span>全体進捗</span>
