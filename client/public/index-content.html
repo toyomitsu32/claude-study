@@ -445,6 +445,18 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         </div>
       </div>
     </div>
+    <div style="margin-bottom:12px;padding:12px 14px;background:rgba(239,68,68,.05);border:1.5px solid rgba(239,68,68,.2);border-radius:var(--r-sm)">
+      <div style="font-size:12px;font-weight:700;color:#dc2626;margin-bottom:5px">⚠️ 追加使用量に注意</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.7">設定 → 「請求」画面に「追加使用量」のトグルがある。有効にすると制限後も自動課金されるため、<strong style="color:#dc2626">オフになっていることを必ず確認</strong>すること。</div>
+    </div>
+    <div class="ci" onclick="chk(this,'c0_overuse',10)" style="margin-bottom:8px">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">追加使用量がオフになっていることを確認した</div>
+        <div class="ci-desc">設定 → 「請求」→ 「追加使用量」がオフのままにする</div>
+      </div>
+      <span class="tag tg-p">+10 XP</span>
+    </div>
     <div class="ci" onclick="chk(this,'c0_usage',10)">
       <div class="cb"><span class="ck">✓</span></div>
       <div class="ci-body">
@@ -1156,7 +1168,7 @@ const LEVELS = [
   {xp:80, lbl:'💻 コード 職人'},
   {xp:100,lbl:'🏆 Claude マスター'},
 ];
-const ALL_CHECKS = 10;
+const ALL_CHECKS = 11;
 
 function dlPage() {
   const html = document.documentElement.outerHTML;
