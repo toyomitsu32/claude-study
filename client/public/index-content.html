@@ -835,29 +835,30 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   <div class="ho-card" style="border:1px solid rgba(45,212,160,.28);background:rgba(45,212,160,.03)">
     <div class="ho-head">
       <div class="ho-num" style="background:rgba(45,212,160,.18);color:var(--teal)">2</div>
-      <h3>ハンズオン② 天気データからExcelグラフを作ってみよう</h3>
+      <h3>ハンズオン② リベシティのつぶやきを分析してみよう</h3>
       <div class="xp-tag">+10 XP</div>
     </div>
     <div style="background:var(--bg3);border-radius:var(--r-sm);padding:10px;font-size:12px;color:var(--text2);margin-bottom:14px">
-      <strong style="color:var(--text)">事前準備：</strong> デスクトップに「Claude作業」フォルダを作っておく
+      <strong style="color:var(--text)">事前準備：</strong> リベシティの自分のプロフィールページを開き、過去約1ヶ月分のつぶやきをコピペしてテキストファイル（tweets.txt）に保存しておく
     </div>
     <div class="ci" onclick="chk(this,'c2a',10)">
       <div class="cb"><span class="ck">✓</span></div>
       <div class="ci-body">
-        <div class="ci-ttl">天気データをExcel＋インタラクティブグラフに変換</div>
-        <div class="ci-desc">Coworkタブ → 「Claude作業」フォルダを指定 → コピペして送信</div>
+        <div class="ci-ttl">つぶやきを集計・グラフ化して投稿改善案をもらう</div>
+        <div class="ci-desc">Coworkタブ → tweets.txt をフォルダ指定 → コピペして送信</div>
         <div class="ci-step">
           <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
-東京の直近7日間の天気と最高気温・最低気温を
-ウェブで調べて、デスクトップの「Claude作業」フォルダに作成してください。
+添付の tweets.txt は、私がリベシティの「つぶやき」機能に投稿した過去約1ヶ月分の内容です。以下をお願いします。
 
-1. データをまとめたExcelファイル（天気データ.xlsx）
-2. 最高気温と最低気温の折れ線グラフ（天気グラフ.html）
-   ※ マウスで操作できるインタラクティブなグラフにしてください
+1. 投稿内容をカテゴリ分類（学び・日常・仕事・雑談など）して集計する
+2. カテゴリ別の投稿数と割合を円グラフで見える化する（グラフ.html）
+3. 「どのカテゴリの投稿を増やすとよいか」改善案を具体的に提案する
+
+デスクトップの「Claude作業」フォルダにグラフ.htmlと集計結果.txtを保存してください。
           </div>
         </div>
-        <div class="ci-step" style="color:var(--teal);margin-top:6px">✨ 完了したら 天気グラフ.html をブラウザで開いてみよう</div>
+        <div class="ci-step" style="color:var(--teal);margin-top:6px">✨ 完了したら グラフ.html をブラウザで開いてみよう。改善案は集計結果.txt に記載されている</div>
       </div>
       <span class="tag tg-t">+10 XP</span>
     </div>
@@ -1395,7 +1396,7 @@ claude
       </div>
       <div class="tl-item" style="background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.14);margin-top:6px">
         <div class="tl-num" style="background:rgba(45,212,160,.18);color:var(--teal)">2</div>
-        <div class="tl-body"><div class="tl-ttl">🤖 Cowork：天気データ → Excelグラフ</div><div class="tl-sub">「ネットから調べてグラフまで作ってくれた！」</div></div>
+        <div class="tl-body"><div class="tl-ttl">🤖 Cowork：つぶやき分析 → グラフ化＋改善案</div><div class="tl-sub">「自分の投稿を分析して改善案まで提案してくれた！」</div></div>
         <span class="tag tg-t">15分</span>
       </div>
       <div class="tl-item" style="background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.14);margin-top:6px">
