@@ -411,19 +411,6 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     <div class="card-ttl">⚙️ 設定項目一覧</div>
     <p style="font-size:13px;color:var(--text2);margin-bottom:16px">設定画面の各項目を確認しておこう。変更が必要なところだけタッチすればOK。</p>
 
-    <!-- 大項目：アカウント -->
-    <div style="margin-bottom:14px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">アカウント</div>
-      <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
-        <span style="font-size:15px;flex-shrink:0">💼</span>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;margin-bottom:2px">職務・個人設定</div>
-          <div style="font-size:12px;color:var(--text2)">「職務」「応答時に考慮すべき個人設定」に自分の情報を入力できる。入力すると全会話に反映される</div>
-        </div>
-        <span style="font-size:11px;font-weight:700;color:var(--text2);white-space:nowrap">お好みで</span>
-      </div>
-    </div>
-
     <!-- 大項目：プライバシー -->
     <div style="margin-bottom:14px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">プライバシー</div>
@@ -431,8 +418,8 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
           <span style="font-size:15px;flex-shrink:0">🔒</span>
           <div style="flex:1">
-            <div style="font-size:13px;font-weight:600;margin-bottom:2px">LM（モデル改善への協力）</div>
-            <div style="font-size:12px;color:var(--text2)">会話内容が学習に利用されるため、OFF を推奨</div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">ロケーションメタデータ</div>
+            <div style="font-size:12px;color:var(--text2)">位置情報が送信されるため、OFF を推奨</div>
           </div>
           <span style="font-size:11px;font-weight:700;color:var(--pink);white-space:nowrap">OFF 推奨</span>
         </div>
@@ -447,16 +434,16 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       </div>
     </div>
 
-    <!-- 大項目：請求・使用料 -->
+    <!-- 大項目：使用料 -->
     <div style="margin-bottom:14px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">請求 / 使用料</div>
-      <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
-        <span style="font-size:15px;flex-shrink:0">💳</span>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">使用料</div>
+      <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15);border-radius:var(--r-sm)">
+        <span style="font-size:15px;flex-shrink:0">⚠️</span>
         <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;margin-bottom:2px">請求は確認不要。使用料は別カードで説明</div>
-          <div style="font-size:12px;color:var(--text2)">追加使用料のオン・オフは使用料カードを参照</div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:2px">追加使用料</div>
+          <div style="font-size:12px;color:var(--text2)">自動課金を防ぐため、<strong style="color:var(--text)">OFF になっていることを確認</strong>。詳細は下の「使用量」カードを参照</div>
         </div>
-        <span style="font-size:11px;font-weight:700;color:var(--text3);white-space:nowrap">確認不要</span>
+        <span style="font-size:11px;font-weight:700;color:#dc2626;white-space:nowrap">OFF 確認</span>
       </div>
     </div>
 
@@ -464,21 +451,29 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     <div style="margin-bottom:14px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">機能</div>
       <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.15);border-radius:var(--r-sm)">
+          <span style="font-size:15px;flex-shrink:0">💬</span>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">チャットを検索・参照</div>
+            <div style="font-size:12px;color:var(--text2)">過去の会話を検索・引用できるようになる</div>
+          </div>
+          <span style="font-size:11px;font-weight:700;color:var(--teal);white-space:nowrap">ON にする</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.15);border-radius:var(--r-sm)">
           <span style="font-size:15px;flex-shrink:0">🧠</span>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:600;margin-bottom:2px">チャット履歴からメモリーを生成</div>
+            <div style="font-size:12px;color:var(--text2)">過去の会話から記憶を自動生成。使うほど育っていく</div>
+          </div>
+          <span style="font-size:11px;font-weight:700;color:var(--teal);white-space:nowrap">ON にする</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
+          <span style="font-size:15px;flex-shrink:0">🔄</span>
           <div style="flex:1">
             <div style="font-size:13px;font-weight:600;margin-bottom:2px">他のAIプロバイダーからメモリをインポート</div>
             <div style="font-size:12px;color:var(--text2)">ChatGPTの記憶をClaudeに引き継ぎたい場合に使う。記事リンクカードを参照</div>
           </div>
-          <span style="font-size:11px;font-weight:700;color:var(--amber);white-space:nowrap">必要時のみ</span>
-        </div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
-          <span style="font-size:15px;flex-shrink:0">⚙️</span>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:600;margin-bottom:2px">その他の機能</div>
-            <div style="font-size:12px;color:var(--text2)">デフォルトのままでOK</div>
-          </div>
-          <span style="font-size:11px;font-weight:700;color:var(--text3);white-space:nowrap">変更不要</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text2);white-space:nowrap">お好みで</span>
         </div>
       </div>
     </div>
@@ -486,36 +481,13 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     <!-- 大項目：コネクタ -->
     <div style="margin-bottom:14px">
       <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">コネクタ</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
-          <span style="font-size:15px;flex-shrink:0">📧</span>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:600;margin-bottom:2px">Gmail / Google Drive / oVice など</div>
-            <div style="font-size:12px;color:var(--text2)">外部サービスと接続できる。利用は自己責任で</div>
-          </div>
-          <span style="font-size:11px;font-weight:700;color:var(--amber);white-space:nowrap">必要時に追加</span>
-        </div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
-          <span style="font-size:15px;flex-shrink:0">🔌</span>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:600;margin-bottom:2px">Claude in Chrome / Control Chrome</div>
-            <div style="font-size:12px;color:var(--text2)">Chrome拡張機能。設定不要（デフォルトのまま）</div>
-          </div>
-          <span style="font-size:11px;font-weight:700;color:var(--text3);white-space:nowrap">変更不要</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 大項目： Claude Code -->
-    <div style="margin-bottom:14px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">Claude Code</div>
       <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
-        <span style="font-size:15px;flex-shrink:0">💻</span>
+        <span style="font-size:15px;flex-shrink:0">📧</span>
         <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;margin-bottom:2px">デフォルトのままでOK</div>
-          <div style="font-size:12px;color:var(--text2)">CLIのインストールは別項目で実施</div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:2px">Gmail / Google Drive など</div>
+          <div style="font-size:12px;color:var(--text2)">外部サービスと接続できる。利用は自己責任で</div>
         </div>
-        <span style="font-size:11px;font-weight:700;color:var(--text3);white-space:nowrap">変更不要</span>
+        <span style="font-size:11px;font-weight:700;color:var(--amber);white-space:nowrap">必要時に追加</span>
       </div>
     </div>
 
@@ -532,39 +504,16 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       </div>
     </div>
 
-    <!-- 大項目： Claude in Chrome -->
-    <div style="margin-bottom:14px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">Claude in Chrome</div>
-      <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
-        <span style="font-size:15px;flex-shrink:0">🌐</span>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;margin-bottom:2px">デフォルトのままでOK</div>
-          <div style="font-size:12px;color:var(--text2)">ChromeサイドパネルでClaudeを使う機能。設定不要</div>
-        </div>
-        <span style="font-size:11px;font-weight:700;color:var(--text3);white-space:nowrap">変更不要</span>
-      </div>
-    </div>
-
     <!-- 大項目： デスクトップアプリ -->
     <div>
       <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">デスクトップアプリ</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(74,158,255,.06);border:1px solid rgba(74,158,255,.15);border-radius:var(--r-sm)">
-          <span style="font-size:15px;flex-shrink:0">🌐</span>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:600;margin-bottom:2px">一般 — ブラウザ使用 / コンピュータ使用</div>
-            <div style="font-size:12px;color:var(--text2)">Dispatchハンズオンで使用。必要に応じてONにする（ハンズオン前に設定カードで案内）</div>
-          </div>
-          <span style="font-size:11px;font-weight:700;color:var(--blue);white-space:nowrap">必要時にON</span>
+      <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(74,158,255,.06);border:1px solid rgba(74,158,255,.15);border-radius:var(--r-sm)">
+        <span style="font-size:15px;flex-shrink:0">🌐</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;margin-bottom:2px">一般 — ブラウザ使用 / コンピュータ使用</div>
+          <div style="font-size:12px;color:var(--text2)">Dispatchハンズオンで使用。必要に応じてONにする（ハンズオン前に設定カードで案内）</div>
         </div>
-        <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:var(--bg3);border-radius:var(--r-sm)">
-          <span style="font-size:15px;flex-shrink:0">⚙️</span>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:600;margin-bottom:2px">拡張機能 / 開発者</div>
-            <div style="font-size:12px;color:var(--text2)">デフォルトのままでOK</div>
-          </div>
-          <span style="font-size:11px;font-weight:700;color:var(--text3);white-space:nowrap">変更不要</span>
-        </div>
+        <span style="font-size:11px;font-weight:700;color:var(--blue);white-space:nowrap">必要時にON</span>
       </div>
     </div>
   </div>
