@@ -319,7 +319,14 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         <div class="step-b"><strong>画面上部のタブを確認</strong><span>チャット・Cowork・コード の3タブが表示されていればOK</span></div>
       </div>
     </div>
-
+    <div class="ci" onclick="chk(this,'c0_install',10)" style="margin-top:12px">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">Claude Desktop をインストールした</div>
+        <div class="ci-desc">チャット・Cowork・コードの3タブが表示されていれば完了</div>
+      </div>
+      <span class="tag tg-p">+10 XP</span>
+    </div>
   </div>
 
   <!-- Claude in Chrome 補足 -->
@@ -1135,7 +1142,7 @@ const LEVELS = [
   {xp:80, lbl:'💻 コード 職人'},
   {xp:100,lbl:'🏆 Claude マスター'},
 ];
-const ALL_CHECKS = 9;
+const ALL_CHECKS = 10;
 
 function dlPage() {
   const html = document.documentElement.outerHTML;
