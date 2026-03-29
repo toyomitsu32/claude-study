@@ -310,14 +310,18 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       </div>
       <div class="step">
         <div class="step-n done">2</div>
-        <div class="step-b"><strong>macOS用をダウンロード</strong><span>macOS（Apple Silicon M1以降）を選択</span></div>
+        <div class="step-b"><strong>macOS用をダウンロード</strong><span>macOS（Apple Silicon M1以降）を選択して .dmg ファイルを保存</span></div>
       </div>
       <div class="step">
-        <div class="step-n">3</div>
-        <div class="step-b"><strong>インストールして起動</strong><span>Google などのアカウントでサインイン</span></div>
+        <div class="step-n done">3</div>
+        <div class="step-b"><strong>.dmg をダブルクリックしてインストール</strong><span>ダウンロードした .dmg をダブルクリック → 開いたウィンドウで Claude アイコンを「アプリケーション」フォルダにドラッグ</span></div>
       </div>
       <div class="step">
         <div class="step-n">4</div>
+        <div class="step-b"><strong>起動してサインイン</strong><span>アプリケーションフォルダから Claude を起動し、Google などのアカウントでサインイン</span></div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
         <div class="step-b"><strong>画面上部のタブを確認</strong><span>チャット・Cowork・コード の3タブが表示されていればOK</span></div>
       </div>
     </div>
@@ -634,10 +638,10 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     </div>
     <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;font-size:12px;color:var(--text2);margin-bottom:14px">
       <strong style="color:var(--text);display:block;margin-bottom:4px">📦 事前準備</strong>
-      配布ZIPを解凍して <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">01_プロジェクト用資料/</code> フォルダの4ファイルを確認しておく
+      配布ZIPを解凍して <code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">02_プロジェクト用資料/</code> フォルダの4ファイルを確認しておく
       <div class="ftree" style="margin-top:8px">
 <table style="border-collapse:collapse;font-family:'JetBrains Mono',monospace;font-size:12px">
-<tr><td style="color:var(--blue);padding:1px 0">01_プロジェクト用資料/</td><td></td></tr>
+<tr><td style="color:var(--blue);padding:1px 0">02_プロジェクト用資料/</td><td></td></tr>
 <tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">会社概要_サンプル株式会社.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 会社情報</td></tr>
 <tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">製品カタログ_CloudTaskPro.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 製品・料金情報</td></tr>
 <tr><td style="padding:1px 0;white-space:nowrap">├── <span style="color:var(--text2)">よくある質問FAQ.txt</span></td><td style="padding:1px 0 1px 16px;color:var(--text3)">← 製品FAQ</td></tr>
@@ -676,7 +680,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       <div class="cb"><span class="ck">✓</span></div>
       <div class="ci-body">
         <div class="ci-ttl">4ファイルをナレッジにアップロード</div>
-        <div class="ci-desc">「ファイルを追加」→ 01_プロジェクト用資料/ の4ファイルをまとめて選択</div>
+        <div class="ci-desc">「ファイルを追加」→ 02_プロジェクト用資料/ の4ファイルをまとめて選択</div>
       </div>
       <span class="tag tg-p">+10 XP</span>
     </div>
@@ -1424,14 +1428,10 @@ claude
 
   <div class="card">
     <div class="card-ttl">📦 配布ファイル</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+    <div style="margin-top:8px">
       <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
-        <div style="font-size:12px;font-weight:700;color:var(--purple2);margin-bottom:6px">01_プロジェクト用資料/</div>
-        <div style="font-size:11px;color:var(--text2)">・会社概要_サンプル株式会社.txt<br>・製品カタログ_CloudTaskPro.txt<br>・よくある質問FAQ.txt<br>・社内規程_抜粋.txt</div>
-      </div>
-      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px">
-        <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px">05_ClaudeCode分析用サンプル/</div>
-        <div style="font-size:11px;color:var(--text2)">・package.json<br>・src/（Express.jsソース）<br>・docs/（API仕様書）<br>・tests/（テストコード）</div>
+        <div style="font-size:12px;font-weight:700;color:var(--purple2);margin-bottom:6px">02_プロジェクト用資料/</div>
+        <div style="font-size:11px;color:var(--text2)">・会社概要_サンプル株式会社.txt<br>・製品カタログ_CloudTaskPro.txt<br>・よくある質問FAQ.txt<br>・社内規程_抜粹.txt</div>
       </div>
     </div>
   </div>
