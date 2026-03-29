@@ -1087,15 +1087,27 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
       <div class="step">
         <div class="step-n done">3</div>
         <div class="step-b">
+          <strong>ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> を実行してログインする</strong>
+          <span>ターミナルで以下を実行するとブラウザが開き、サブスクリプションアカウントで認証する。</span>
+          <div class="code" style="margin-top:8px">
+            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+claude
+          </div>
+          <div style="margin-top:6px;font-size:11px;color:var(--text3)">認証後は <kbd style="background:var(--bg3);padding:1px 5px;border-radius:3px;font-size:11px">Ctrl+C</kbd> でセッションを終了してOK</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n done">4</div>
+        <div class="step-b">
           <strong>Claude Desktop アプリを起動する</strong>
           <span>インストール後、デスクトップアプリを起動すると「コード」タブが使えるようになる。</span>
         </div>
       </div>
       <div class="step">
-        <div class="step-n">4</div>
+        <div class="step-n">5</div>
         <div class="step-b">
           <strong>（Web でも使いたい場合）<code style="font-family:'JetBrains Mono',monospace">/web-setup</code> を実行する</strong>
-          <span>ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> と入力してログイン後、claudeセッション内で以下を入力する。</span>
+          <span>再度ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> を起動し、claudeセッション内で以下を入力する。</span>
           <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
 /web-setup
