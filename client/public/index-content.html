@@ -1148,6 +1148,51 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
     </div>
   </div>
 
+  <!-- 実行モード -->
+  <div class="card">
+    <div class="card-ttl">🔒 4つの実行モード</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Claude Code がファイルを編集・コマンドを実行するとき、どこまで自動で進めるかを4段階で制御できる。右下の盾アイコンから切り替え可能。</p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+
+      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--bg3);border-radius:var(--r-sm);padding:13px">
+        <div style="background:rgba(239,68,68,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🔴</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">許可を確認 <span style="font-size:11px;font-weight:400;color:var(--text3)">（デフォルト）</span></div>
+          <div style="font-size:12px;color:var(--text2)">ファイル編集・コマンド実行のたびに確認ダイアログが出る。<strong style="color:var(--text)">最初はこのモードで始めよう。</strong>何をしているか把握しながら進められる。</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--bg3);border-radius:var(--r-sm);padding:13px">
+        <div style="background:rgba(251,191,36,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🟡</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">編集を自動承認</div>
+          <div style="font-size:12px;color:var(--text2)">ファイルの読み書きは自動で進む。コマンド実行（ターミナル操作）だけ確認が入る。慣れてきたら使うと作業がスムーズになる。</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--bg3);border-radius:var(--r-sm);padding:13px">
+        <div style="background:rgba(99,85,232,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🟣</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">プランモード</div>
+          <div style="font-size:12px;color:var(--text2)">実際には何もせず、<strong style="color:var(--text)">「こういう手順でやります」という計画だけを提示する</strong>モード。大きな変更の前に「どう進めるか確認したい」ときに便利。</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--bg3);border-radius:var(--r-sm);padding:13px">
+        <div style="background:rgba(45,212,160,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🟢</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">許可をバイパス</div>
+          <div style="font-size:12px;color:var(--text2)">すべての操作を確認なしで自動実行する。慣れた作業・信頼できるプロジェクトで使う上級者向けモード。<strong style="color:#dc2626">最初は使わないこと。</strong></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:12px;padding:10px 14px;background:rgba(74,158,255,.06);border-left:3px solid var(--blue);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:12px;color:var(--text2)">
+      <strong style="color:var(--text);display:block;margin-bottom:3px">💡 おすすめの使い方</strong>
+      最初は<strong style="color:var(--text)">「許可を確認」</strong>で始めて、Claudeが何をしているか確認しながら慣れよう。慣れてきたら「編集を自動承認」に切り替えると快適になる。
+    </div>
+  </div>
+
   <!-- HANDSON 5 -->
   <div class="ho-card" style="border:1px solid rgba(124,106,247,.28);background:rgba(124,106,247,.03)">
     <div class="ho-head">
