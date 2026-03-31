@@ -579,6 +579,64 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     </div>
   </a>
 
+  <!-- Claude Code用プロジェクトフォルダ作成 -->
+  <div class="ho-card" style="border:1px solid rgba(59,130,246,.3);background:rgba(59,130,246,.04)">
+    <div class="ho-head">
+      <div class="ho-num" style="background:rgba(59,130,246,.18);color:var(--blue)">+</div>
+      <h3>Claude Code 用のプロジェクトフォルダを作ろう</h3>
+      <div class="xp-tag">+10 XP</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Part 3「コード」で使うプロジェクトフォルダを先に作っておこう。Claude Codeはフォルダ単位で作業するので、専用の場所を用意するのが大事。</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n done">1</div>
+        <div class="step-b">
+          <strong>Finder でプロジェクトフォルダを作成する</strong>
+          <span>Finder を開き、以下の順にフォルダを作成する。</span>
+          <div style="margin-top:8px;background:var(--bg3);border-radius:var(--r-sm);padding:12px 14px;font-size:12px;color:var(--text2);line-height:1.8">
+            <strong style="color:var(--text)">📂 書類（Documents）</strong> フォルダを開く<br>
+            → 右クリック →「新規フォルダ」→ <strong style="color:var(--text)">projects</strong> と名前をつける<br>
+            → projects フォルダを開く<br>
+            → 右クリック →「新規フォルダ」→ <strong style="color:var(--text)">my-project</strong> と名前をつける
+          </div>
+          <div style="margin-top:6px;font-size:11px;color:var(--text3)">完成パス：書類 / projects / my-project</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n done">2</div>
+        <div class="step-b">
+          <strong>ハンズオン配布ファイルをダウンロードして展開する</strong>
+          <span>下のリンクから ZIP をダウンロードし、解凍したファイルを <code style="font-family:'JetBrains Mono',monospace;background:var(--bg3);padding:1px 5px;border-radius:3px">~/Documents/projects/my-project</code> に入れる</span>
+          <div style="margin-top:8px">
+            <a href="https://drive.google.com/file/d/1VoU4dnG7yNt5n8U1E29uTdj03BLhi6Kd/view?usp=sharing" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-size:12px;font-weight:600">📦 ClaudeCodeHandsOn.zip をダウンロード →</a>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n done">3</div>
+        <div class="step-b">
+          <strong>フォルダの中身を確認する</strong>
+          <span>Finder で my-project フォルダを開き、ファイルが入っていればOK。</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;padding:12px 14px;background:rgba(59,130,246,.06);border-left:3px solid var(--blue);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:12px;color:var(--text2)">
+      <strong style="color:var(--text);display:block;margin-bottom:4px">💡 ポイント</strong>
+      このフォルダが Part 3「コード」でClaude Codeの作業場所になる。Claude Codeはこのフォルダの中身を読み書きして作業を進める。フォルダを決めておくと成果物が迷子にならない！
+    </div>
+
+    <div class="ci" onclick="chk(this,'c_proj_folder',10)" style="margin-top:14px">
+      <div class="cb"><span class="ck">✓</span></div>
+      <div class="ci-body">
+        <div class="ci-ttl">プロジェクトフォルダを作成してファイルを配置した</div>
+        <div class="ci-desc">~/Documents/projects/my-project にファイルが入っていれば完了</div>
+      </div>
+      <span class="tag tg-b">+10 XP</span>
+    </div>
+  </div>
+
   <div class="sec-nav">
     <button class="btn btn-ghost" disabled>← 前へ</button>
     <div style="display:flex;gap:8px">
@@ -796,7 +854,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         </div>
       </div>
       <div class="env-col">
-        <div class="env-lbl" style="color:var(--blue)">💻 コード（デスクトップ）</div>
+        <div class="env-lbl" style="color:var(--blue)">💻 コード</div>
         <div class="env-box" style="border-color:rgba(74,158,255,.25)">
           <div class="env-hd" style="background:rgba(74,158,255,.1);color:var(--blue)">🖥️ あなたのPC</div>
           <div class="env-bd">
@@ -812,6 +870,10 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
           コーディング・デバッグ向き<br>変更のたびに確認
         </div>
       </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 16px;background:rgba(251,191,36,.06);border:1.5px solid rgba(251,191,36,.2);border-radius:var(--r-sm)">
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px">☀️ さにー個人的には…</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.8">Coworkよりも<strong style="color:var(--text)">コードの方がおすすめ</strong>です。AIの動きやファイルの成果物がどこにあるかが圧倒的にわかりやすい。Coworkは便利だけど、裏で何が起きているか見えにくいので、まずはコードで「AIと一緒に作る」感覚を掴もう！</div>
     </div>
   </div>
 
@@ -1036,20 +1098,23 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   <!-- VS Code vs デスクトップアプリ：なぜVS Codeがおすすめ？ -->
   <div class="card">
     <div class="card-ttl">👀 VS Code + Claude Code がおすすめな理由</div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">AIが何をしているかが、<strong style="color:var(--text)">圧倒的に見えやすい</strong>から。Claude Codeを使いこなす上で一番重要なのは、<strong style="color:var(--text)">AIエージェントの動き（今何をして、何を作ったのか）を理解し、監視すること。</strong></p>
+    <div style="margin-bottom:14px;padding:12px 16px;background:rgba(251,191,36,.06);border:1.5px solid rgba(251,191,36,.2);border-radius:var(--r-sm)">
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px">☀️ さにー個人的には…</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.8">VS Codeは最初ちょっととっつきづらいかもしれません。でも、AIが何をしているかが<strong style="color:var(--text)">圧倒的に見えやすい</strong>。Claude Codeを使いこなす上で一番重要なのは、<strong style="color:var(--text)">AIエージェントの動き（今何をして、何を作ったのか）を理解し、監視すること。</strong>AI産業革命の本当の価値を手にするには、この一歩が大きい。<strong style="color:var(--text)">アプリ版で「便利だな」で終わるか、VS Codeで「自分の仕事を根本から変える」か。</strong>ぜひチャレンジしてみてください！</div>
+    </div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <div style="background:rgba(239,68,68,.04);border:1.5px solid rgba(239,68,68,.18);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
-        <div style="background:rgba(239,68,68,.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🖥️</div>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:700;margin-bottom:3px">デスクトップアプリの場合</div>
-          <div style="font-size:12px;color:var(--text2);line-height:1.7">裏で何が行われているか<strong style="color:#dc2626">見えにくい</strong>。知らない間にいろんな場所にファイルが作成されて、どこで何を作ったのか迷子になりがち。</div>
-        </div>
-      </div>
       <div style="background:rgba(45,212,160,.04);border:1.5px solid rgba(45,212,160,.22);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
         <div style="background:rgba(45,212,160,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🔌</div>
         <div style="flex:1">
           <div style="font-size:13px;font-weight:700;margin-bottom:3px">VS Code + Claude Code の場合 <span class="tag tg-g" style="font-size:10px;margin-left:4px">おすすめ</span></div>
           <div style="font-size:12px;color:var(--text2);line-height:1.7">作業内容が<strong style="color:var(--teal)">明瞭</strong>！PCの中身がスッキリ保たれ、<strong style="color:var(--text)">何で・どこで・どんな作業をしたのか</strong>が一目でわかる。</div>
+        </div>
+      </div>
+      <div style="background:rgba(239,68,68,.04);border:1.5px solid rgba(239,68,68,.18);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(239,68,68,.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🖥️</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">デスクトップアプリの場合</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.7">裏で何が行われているか<strong style="color:#dc2626">見えにくい</strong>。知らない間にいろんな場所にファイルが作成されて、どこで何を作ったのか迷子になりがち。</div>
         </div>
       </div>
     </div>
@@ -1230,80 +1295,53 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
   <div class="ho-card" style="border:1px solid rgba(124,106,247,.28);background:rgba(124,106,247,.03)">
     <div class="ho-head">
       <div class="ho-num" style="background:rgba(124,106,247,.18);color:var(--purple2)">5</div>
-      <h3>ハンズオン⑤ 要件定義から3役割でアプリを作ってみよう</h3>
+      <h3>ハンズオン⑤ ぷよぷよ風ゲームを作って遊んでみよう</h3>
       <div class="xp-tag">+20 XP</div>
     </div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">「何を作るか」を決めてから、要件定義→計画→実装→評価のサイクルをClaude Codeに一気に屋ってもらう。「AIが開発プロセス全体を担える」ことを体感しよう。</p>
-
-    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;margin-bottom:14px">
-      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px">💡 作るもののアイデア例（自分の業務に合わせて選んでOK）</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
-        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;color:var(--text2)">&#x1f4ca; 見積もり計算機（単価×数量→合計）</div>
-        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;color:var(--text2)">&#x2705; タスク管理ツール（今日のチェックリスト）</div>
-        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;color:var(--text2)">&#x23f1;&#xfe0f; ポモドーロタイマー（25分作業×5回）</div>
-        <div style="background:var(--bg);border-radius:6px;padding:8px 10px;color:var(--text2)">&#x1f4dd; 日報テンプレート生成ツール</div>
-      </div>
-    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">たった一言の指示で、動くゲームが出来上がる。「AIにコードを書いてもらう」感覚を、まず体感してみよう！</p>
 
     <div class="steps">
       <div class="step">
-        <div class="step-n">1</div>
+        <div class="step-n done">1</div>
         <div class="step-b">
-          <strong>作りたいものを一行で決める</strong>
-          <span>上のアイデアから選ぶか、自分の業務で使えるものを自由に考える</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-n">2</div>
-        <div class="step-b">
-          <strong>要件定義を依頼する</strong>
-          <span>Claude Codeのチャットに以下を貼り付けて送信</span>
+          <strong>コードタブでプロンプトを送信する</strong>
+          <span>以下をコピーして送信するだけ。あとはClaudeが全部作ってくれる。</span>
           <div class="code" style="margin-top:8px">
             <button class="copy-btn" onclick="cp(this,event)">copy</button>
-以下のツールを作りたい。要件定義書を日本語で作成して。
-ツール：[作りたいものを記入]          </div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-n">3</div>
-        <div class="step-b">
-          <strong>3役割で実装を依頼する</strong>
-          <span>要件定義書ができたら、続けて以下を送信</span>
-          <div class="code" style="margin-top:8px">
-            <button class="copy-btn" onclick="cp(this,event)">copy</button>
-あなたは計画者・実装者・評価者の3つの役割を順番に担ってください。
+ぷよぷよ風ゲームを作って。HTMLファイル1つで完結させて、デスクトップの「Claude作業」フォルダに保存して。
 
-①計画者：先ほどの要件定義書を元に、実装計画（ファイル構成・使用技術・実装順序）を策定する
-②実装者：計画に従ってHTMLファイルを1つ作成する（外部ライブラリ不要、単一ファイルで完結）
-③評価者：実装したファイルをレビューし、動作確認と改善点を列挙する          </div>
+- カラフルなぷよが上から落ちてくる
+- 同じ色が4つ以上つながると消える
+- 連鎖で大量に消えると気持ちいい演出をつけて
+          </div>
         </div>
       </div>
       <div class="step">
-        <div class="step-n">4</div>
+        <div class="step-n done">2</div>
         <div class="step-b">
           <strong>生成されたファイルをブラウザで開く</strong>
-          <span>Finderで生成されたファイルをダブルクリック→ ブラウザで動作確認</span>
+          <span>Finderで「Claude作業」フォルダを開き、生成されたHTMLファイルをダブルクリック</span>
         </div>
       </div>
       <div class="step">
-        <div class="step-n">5</div>
+        <div class="step-n done">3</div>
         <div class="step-b">
-          <strong>改善を依頼する（オプション）</strong>
-          <span>評価者の指摘を元に、「評価者の指摘を元に修正して」と依頼するだけで再実装される</span>
+          <strong>遊んでみて、改善を依頼する</strong>
+          <span>「もっと速くして」「スコア表示を追加して」「BGMをつけて」など、思いつきを伝えるだけで改良される</span>
         </div>
       </div>
     </div>
 
     <div style="margin-top:14px;padding:12px 14px;background:rgba(124,106,247,.06);border-left:3px solid var(--purple2);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:12px;color:var(--text2)">
       <strong style="color:var(--text);display:block;margin-bottom:4px">💡 ポイント</strong>
-      要件定義の段階で「こんな機能も欲しい」と追加するだけで、自動で設計に盛り込まれる。要件定義が丁寧なほど、完成度が高いアプリになる。
+      プログラミングの知識はゼロでOK。「こうしたい」を日本語で伝えるだけで、Claudeがコードを書いて動くものを作ってくれる。これがClaude Codeの力！
     </div>
 
     <div class="ci" onclick="chk(this,'hs5_app',20)" style="margin-top:14px">
       <div class="cb"><span class="ck">✓</span></div>
       <div class="ci-body">
-        <div class="ci-ttl">アプリを作ってブラウザで動作を確認した</div>
-        <div class="ci-desc">HTMLファイルが生成され、ブラウザで開いたらクリア</div>
+        <div class="ci-ttl">ゲームを作ってブラウザで遊んだ</div>
+        <div class="ci-desc">HTMLファイルが生成され、ブラウザで開いて動作を確認したらクリア</div>
       </div>
       <span class="tag tg-p">+20 XP</span>
     </div>
@@ -1347,7 +1385,7 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
       </div>
       <div class="tl-item" style="background:rgba(74,158,255,.06);border:1px solid rgba(74,158,255,.15);margin-top:6px">
         <div class="tl-num" style="background:rgba(74,158,255,.18);color:var(--blue)">5</div>
-        <div class="tl-body"><div class="tl-ttl">💻 コード：3役割でアプリを作ってみよう</div><div class="tl-sub">「計画者・実装者・評価者で品質が上がった！」</div></div>
+        <div class="tl-body"><div class="tl-ttl">💻 コード：ぷよぷよ風ゲームを作って遊ぼう</div><div class="tl-sub">「一言でゲームができた！プログラミング不要！」</div></div>
         <span class="tag tg-b">20分</span>
       </div>
       <div style="background:var(--bg3);border-radius:var(--r-sm);padding:12px;margin-top:10px;text-align:center">
@@ -1388,6 +1426,19 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
     <div style="font-size:20px;font-weight:700;margin-bottom:10px">おつかれさまでした！</div>
     <p style="font-size:15px;color:var(--text2);line-height:1.8;margin:0">習うより慣れろ——<br>どんどん使って慣れていきましょう！</p>
   </div>
+
+  <a href="https://library.libecity.com/articles/01KMWBSXD2XVAYSE83XPX52YK9" target="_blank" rel="noopener noreferrer" style="text-decoration:none;display:block;margin-bottom:14px">
+    <div class="card" style="border:1px solid rgba(33,118,232,.3);background:rgba(33,118,232,.05);display:flex;align-items:flex-start;gap:14px;padding:18px 20px">
+      <div style="font-size:28px;flex-shrink:0">📖</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:11px;color:var(--blue);font-weight:700;letter-spacing:.06em;margin-bottom:4px">📖 ノウハウ図書館 · この勉強会について</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Claude 勉強会、あなたも開いてみませんか？</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6">このページを使って勉強会を開く背景・想いをまとめた記事です。リベシティアカウントがあれば参照できます。</div>
+        <div style="font-size:12px;color:var(--blue);margin-top:8px;font-weight:600">参考になったら、いいね・レビューいただけると励みになります！</div>
+      </div>
+      <div style="font-size:16px;color:var(--blue);flex-shrink:0">→</div>
+    </div>
+  </a>
 
   <div class="final-card" id="finalCard">
     <div style="font-size:48px">🏆</div>
