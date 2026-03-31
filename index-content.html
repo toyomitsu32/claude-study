@@ -536,6 +536,13 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
           <div style="font-size:12px;color:var(--text2)">「すべてのモデル」と「Sonnetのみ」の2種類。Sonnetは週内で別途リセットされる。両方の残量を確認すると安心。</div>
         </div>
       </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:12px;background:var(--bg3);border-radius:var(--r-sm)">
+        <span style="font-size:18px;flex-shrink:0">🔋</span>
+        <div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:3px">モデルによってトークン消費量が違う</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.7"><strong>Opus</strong>：高性能で消費大 — じっくり考えてほしいときだけ<br><strong>Sonnet</strong>：バランス型 — 日常の質問はこれでOK<br><strong>Haiku</strong>：軽量で消費少 — サクッと聞きたいときに<br>チャット画面のモデル選択で切り替えできる。使い分けると制限が長持ちする。</div>
+        </div>
+      </div>
     </div>
     <div style="margin-bottom:12px;padding:12px 14px;background:rgba(239,68,68,.05);border:1.5px solid rgba(239,68,68,.2);border-radius:var(--r-sm)">
       <div style="font-size:12px;font-weight:700;color:#dc2626;margin-bottom:5px">⚠️ 追加使用量に注意</div>
@@ -1026,81 +1033,152 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     </div>
   </a>
 
+  <!-- VS Code vs デスクトップアプリ：なぜVS Codeがおすすめ？ -->
   <div class="card">
-    <div class="card-ttl">💻 コードの3つの使い方</div>
-    <p style="margin-bottom:14px;font-size:13px;color:var(--text2)">同じClaude Codeエンジンを、3つの異なる環境で使える。</p>
+    <div class="card-ttl">👀 VS Code + Claude Code がおすすめな理由</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">AIが何をしているかが、<strong style="color:var(--text)">圧倒的に見えやすい</strong>から。Claude Codeを使いこなす上で一番重要なのは、<strong style="color:var(--text)">AIエージェントの動き（今何をして、何を作ったのか）を理解し、監視すること。</strong></p>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
-        <div style="background:rgba(99,85,232,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🖥️</div>
+      <div style="background:rgba(239,68,68,.04);border:1.5px solid rgba(239,68,68,.18);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(239,68,68,.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🖥️</div>
         <div style="flex:1">
-          <div style="font-size:13px;font-weight:700;margin-bottom:3px">デスクトップアプリ <span class="tag tg-g" style="font-size:10px;margin-left:4px">メイン・おすすめ</span></div>
-          <div style="font-size:12px;color:var(--text2)">Claude Desktopアプリの「コード」タブ。インストール不要で即使える。GUIでdiff確認・承認ができる。</div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">デスクトップアプリの場合</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.7">裏で何が行われているか<strong style="color:#dc2626">見えにくい</strong>。知らない間にいろんな場所にファイルが作成されて、どこで何を作ったのか迷子になりがち。</div>
         </div>
       </div>
-      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
-        <div style="background:rgba(74,158,255,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🌐</div>
+      <div style="background:rgba(45,212,160,.04);border:1.5px solid rgba(45,212,160,.22);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
+        <div style="background:rgba(45,212,160,.12);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🔌</div>
         <div style="flex:1">
-          <div style="font-size:13px;font-weight:700;margin-bottom:3px">Web（claude.ai/code）<span class="tag tg-b" style="font-size:10px;margin-left:4px">CLIインストール必要</span></div>
-          <div style="font-size:12px;color:var(--text2)">ブラウザ・スマホからコードセッションを操作できる。ただし事前にターミナルでCLIをインストールし、<code style="font-family:'JetBrains Mono',monospace;background:var(--bg);padding:1px 5px;border-radius:3px">/web-setup</code>（※）を実行する必要がある。</div>
-        </div>
-      </div>
-      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:14px;display:flex;gap:12px;align-items:flex-start">
-        <div style="background:rgba(15,158,106,.1);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🔌</div>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:700;margin-bottom:3px">VSCode拡張 <span class="tag tg-a" style="font-size:10px;margin-left:4px">参考</span></div>
-          <div style="font-size:12px;color:var(--text2)">VSCodeのエディタ内にClaudeパネルが表示される。エラーの自動認識などのメリットがある。</div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:3px">VS Code + Claude Code の場合 <span class="tag tg-g" style="font-size:10px;margin-left:4px">おすすめ</span></div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.7">作業内容が<strong style="color:var(--teal)">明瞭</strong>！PCの中身がスッキリ保たれ、<strong style="color:var(--text)">何で・どこで・どんな作業をしたのか</strong>が一目でわかる。</div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- コード環境タブ切り替え -->
   <div class="card">
-    <div class="card-ttl">⬇️ Claude Code CLI のインストール手順</div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">デスクトップアプリ・Web どちらで使う場合も、まず CLI をインストールする必要がある。ターミナルを起動して以下の手順を進めよう。</p>
-    <div style="background:var(--bg3);border-radius:var(--r-sm);padding:10px 14px;font-size:12px;color:var(--text2);margin-bottom:14px">
-      <strong style="color:var(--text)">🖥️ ターミナルの起動方法（Mac）</strong><br>
-      「<strong>Command ⌘ + スペース</strong>」で Spotlight を開き、「<strong>ターミナル</strong>」と入力して Enter
+    <div class="card-ttl">⬇️ セットアップ手順</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">使いたい環境を選んで手順を進めよう。</p>
+    <div style="display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid var(--border)">
+      <button id="code-tab-vscode" onclick="switchCodeTab('vscode')" style="flex:1;padding:10px 16px;background:none;border:none;border-bottom:2px solid var(--teal);margin-bottom:-2px;font-size:13px;font-weight:700;color:var(--teal);cursor:pointer;font-family:'Noto Sans JP',sans-serif">🔌 VS Code（おすすめ）</button>
+      <button id="code-tab-desktop" onclick="switchCodeTab('desktop')" style="flex:1;padding:10px 16px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;font-size:13px;font-weight:400;color:var(--text2);cursor:pointer;font-family:'Noto Sans JP',sans-serif">🖥️ デスクトップアプリ</button>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-n done">1</div>
-        <div class="step-b">
-          <strong>ターミナルで curl コマンドを実行する</strong>
-          <span>以下をコピーしてターミナルに貼り付け、Enter を押す。インストールが自動で完了する。</span>
-          <div class="code" style="margin-top:8px">
-            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+
+    <!-- VS Code タブ -->
+    <div id="code-panel-vscode">
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:10px 14px;font-size:12px;color:var(--text2);margin-bottom:14px">
+        <strong style="color:var(--text)">🖥️ ターミナルの起動方法（Mac）</strong><br>
+        「<strong>Command ⌘ + スペース</strong>」で Spotlight を開き、「<strong>ターミナル</strong>」と入力して Enter
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n done">1</div>
+          <div class="step-b">
+            <strong>Claude Code CLI をインストールする</strong>
+            <span>以下をコピーしてターミナルに貼り付け、Enter を押す。</span>
+            <div class="code" style="margin-top:8px">
+              <button class="copy-btn" onclick="cp(this,event)">copy</button>
 curl -fsSL https://claude.ai/install.sh | bash
+            </div>
           </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-n done">2</div>
-        <div class="step-b">
-          <strong>PATH を通す（パスを設定する）</strong>
-          <span><code style="font-family:'JetBrains Mono',monospace">claude</code> コマンドをどこからでも呼び出せるようにする。以下をコピーして実行する。</span>
-          <div class="code" style="margin-top:8px">
-            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+        <div class="step">
+          <div class="step-n done">2</div>
+          <div class="step-b">
+            <strong>PATH を通す（パスを設定する）</strong>
+            <span><code style="font-family:'JetBrains Mono',monospace">claude</code> コマンドをどこからでも呼び出せるようにする。</span>
+            <div class="code" style="margin-top:8px">
+              <button class="copy-btn" onclick="cp(this,event)">copy</button>
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zshrc
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n done">3</div>
+          <div class="step-b">
+            <strong>VS Code をインストールする</strong>
+            <span>まだ入っていない場合は、以下からダウンロードしてインストールする。</span>
+            <div style="margin-top:8px"><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);font-size:12px;font-weight:600">https://code.visualstudio.com/ →</a></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n done">4</div>
+          <div class="step-b">
+            <strong>Japanese Language Pack を入れる</strong>
+            <span>VS Code を起動 → 左のブロックアイコン（拡張機能）→「Japanese」で検索 → <strong>Japanese Language Pack for Visual Studio Code</strong> をインストール → 再起動</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n done">5</div>
+          <div class="step-b">
+            <strong>Claude 拡張機能を入れる</strong>
+            <span>拡張機能で「Claude」を検索 → <strong>Claude</strong>（Anthropic公式）をインストール</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n done">6</div>
+          <div class="step-b">
+            <strong>ワークスペース（作業フォルダ）を設定する</strong>
+            <span>VS Code で「ファイル → フォルダを開く」から、デスクトップの「Claude作業」フォルダを開く。なければ先に作っておく。</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n done">7</div>
+          <div class="step-b">
+            <strong>Claude Code を起動して動作確認</strong>
+            <span>VS Code 左のサイドバーに Claude アイコンが表示される。クリックしてパネルを開き、サブスクリプションアカウントでログインする。チャットが表示されればセットアップ完了！</span>
           </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-n done">3</div>
-        <div class="step-b">
-          <strong>Claude Desktop アプリを起動する</strong>
-          <span>インストール後、デスクトップアプリを起動すると「コード」タブが使えるようになる。</span>
-        </div>
+    </div>
+
+    <!-- デスクトップアプリ タブ -->
+    <div id="code-panel-desktop" style="display:none">
+      <div style="background:var(--bg3);border-radius:var(--r-sm);padding:10px 14px;font-size:12px;color:var(--text2);margin-bottom:14px">
+        <strong style="color:var(--text)">🖥️ ターミナルの起動方法（Mac）</strong><br>
+        「<strong>Command ⌘ + スペース</strong>」で Spotlight を開き、「<strong>ターミナル</strong>」と入力して Enter
       </div>
-      <div class="step">
-        <div class="step-n">4</div>
-        <div class="step-b">
-          <strong>（Web でも使いたい場合）<code style="font-family:'JetBrains Mono',monospace">/web-setup</code> を実行する</strong>
-          <span>ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> と入力してログイン後、claudeセッション内で以下を入力する。</span>
-          <div class="code" style="margin-top:8px">
-            <button class="copy-btn" onclick="cp(this,event)">copy</button>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n done">1</div>
+          <div class="step-b">
+            <strong>ターミナルで curl コマンドを実行する</strong>
+            <span>以下をコピーしてターミナルに貼り付け、Enter を押す。インストールが自動で完了する。</span>
+            <div class="code" style="margin-top:8px">
+              <button class="copy-btn" onclick="cp(this,event)">copy</button>
+curl -fsSL https://claude.ai/install.sh | bash
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n done">2</div>
+          <div class="step-b">
+            <strong>PATH を通す（パスを設定する）</strong>
+            <span><code style="font-family:'JetBrains Mono',monospace">claude</code> コマンドをどこからでも呼び出せるようにする。以下をコピーして実行する。</span>
+            <div class="code" style="margin-top:8px">
+              <button class="copy-btn" onclick="cp(this,event)">copy</button>
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zshrc
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n done">3</div>
+          <div class="step-b">
+            <strong>Claude Desktop アプリを起動する</strong>
+            <span>インストール後、デスクトップアプリを起動すると「コード」タブが使えるようになる。</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div class="step-b">
+            <strong>（Web でも使いたい場合）<code style="font-family:'JetBrains Mono',monospace">/web-setup</code> を実行する</strong>
+            <span>ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> と入力してログイン後、claudeセッション内で以下を入力する。</span>
+            <div class="code" style="margin-top:8px">
+              <button class="copy-btn" onclick="cp(this,event)">copy</button>
 /web-setup
+            </div>
+            <div style="margin-top:6px;font-size:11px;color:var(--text3)">実行後は <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">claude.ai/code</a> をブラウザで開くとWebからも操作できる</div>
           </div>
-          <div style="margin-top:6px;font-size:11px;color:var(--text3)">実行後は <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">claude.ai/code</a> をブラウザで開くとWebからも操作できる</div>
         </div>
       </div>
     </div>
@@ -1353,6 +1431,25 @@ function dlPage() {
   a.download = 'claude-desktop-handson.html';
   a.click();
   URL.revokeObjectURL(a.href);
+}
+
+function switchCodeTab(tab) {
+  var tabs = ['vscode', 'desktop'];
+  tabs.forEach(function(t) {
+    var btn = document.getElementById('code-tab-' + t);
+    var panel = document.getElementById('code-panel-' + t);
+    if (t === tab) {
+      btn.style.borderBottomColor = 'var(--teal)';
+      btn.style.fontWeight = '700';
+      btn.style.color = 'var(--teal)';
+      panel.style.display = '';
+    } else {
+      btn.style.borderBottomColor = 'transparent';
+      btn.style.fontWeight = '400';
+      btn.style.color = 'var(--text2)';
+      panel.style.display = 'none';
+    }
+  });
 }
 
 function go(i) {
