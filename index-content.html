@@ -247,7 +247,10 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   <div class="gp-wrap">
     <div class="gp-top">
       <span>全体進捗</span>
-      <span id="gp-pct" style="font-family:'JetBrains Mono',monospace">0%</span>
+      <span style="display:flex;align-items:center;gap:10px">
+        <button onclick="resetChecks()" style="font-size:11px;padding:3px 10px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .18s;font-family:inherit" onmouseover="this.style.borderColor='var(--pink)';this.style.color='var(--pink)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">リセット</button>
+        <span id="gp-pct" style="font-family:'JetBrains Mono',monospace">0%</span>
+      </span>
     </div>
     <div class="gp-track"><div class="gp-fill" id="gp-bar"></div></div>
   </div>
@@ -450,13 +453,13 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
       </div>
     </div>
 
-    <!-- 大項目：使用料 -->
+    <!-- 大項目：使用量 -->
     <div style="margin-bottom:14px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">使用料</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--text3);text-transform:uppercase;margin-bottom:6px;padding-left:2px">使用量</div>
       <div style="display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15);border-radius:var(--r-sm)">
         <span style="font-size:15px;flex-shrink:0">⚠️</span>
         <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;margin-bottom:2px">追加使用料</div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:2px">追加使用量</div>
           <div style="font-size:12px;color:var(--text2)">自動課金を防ぐため、<strong style="color:var(--text)">OFF になっていることを確認</strong>。詳細は下の「使用量」カードを参照</div>
         </div>
         <span style="font-size:11px;font-weight:700;color:#dc2626;white-space:nowrap">OFF 確認</span>
@@ -1518,6 +1521,16 @@ function go(i) {
   document.getElementById('s'+i).classList.add('active');
   document.getElementById('tab'+i).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function resetChecks() {
+  if(!confirm('チェックをすべてリセットしますか？')) return;
+  Object.keys(CHECKS).forEach(id => delete CHECKS[id]);
+  document.querySelectorAll('.ci.done').forEach(el => el.classList.remove('done'));
+  document.querySelectorAll('.nav-tab.done').forEach(el => el.classList.remove('done'));
+  xp = 0;
+  updXP(); updGP();
+  document.getElementById('finalCard').style.display='none';
 }
 
 function chk(el,id,pts) {
