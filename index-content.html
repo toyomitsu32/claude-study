@@ -1219,6 +1219,18 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
         <div class="step">
           <div class="step-n done">1</div>
           <div class="step-b">
+            <strong>Command Line Tools（Git）をインストールする</strong>
+            <span>「コード」タブはローカルで Git を使うため、事前に Command Line Tools が必要。以下をターミナルに貼り付けて Enter を押し、ダイアログが出たら「インストール」をクリック。</span>
+            <div class="code" style="margin-top:8px">
+              <button class="copy-btn" onclick="cp(this,event)">copy</button>
+xcode-select --install
+            </div>
+            <div style="margin-top:6px;font-size:11px;color:var(--text3)">インストール済みの場合は「command line tools are already installed」と表示される。完了確認は <code style="font-family:'JetBrains Mono',monospace">git --version</code></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n done">2</div>
+          <div class="step-b">
             <strong>ターミナルで curl コマンドを実行する</strong>
             <span>以下をコピーしてターミナルに貼り付け、Enter を押す。インストールが自動で完了する。</span>
             <div class="code" style="margin-top:8px">
@@ -1228,7 +1240,7 @@ curl -fsSL https://claude.ai/install.sh | bash
           </div>
         </div>
         <div class="step">
-          <div class="step-n done">2</div>
+          <div class="step-n done">3</div>
           <div class="step-b">
             <strong>PATH を通す（パスを設定する）</strong>
             <span><code style="font-family:'JetBrains Mono',monospace">claude</code> コマンドをどこからでも呼び出せるようにする。以下をコピーして実行する。</span>
@@ -1239,14 +1251,14 @@ echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc &amp;&amp; source ~/.zsh
           </div>
         </div>
         <div class="step">
-          <div class="step-n done">3</div>
+          <div class="step-n done">4</div>
           <div class="step-b">
             <strong>Claude Desktop アプリを起動する</strong>
-            <span>インストール後、デスクトップアプリを起動すると「コード」タブが使えるようになる。</span>
+            <span>デスクトップアプリには Claude Code が標準搭載されているため、Step 1（Git）が入っていれば起動後すぐに「コード」タブが使える。Step 2-3 の CLI インストールは、ターミナルから <code style="font-family:'JetBrains Mono',monospace">claude</code> コマンドを使う場合や、次の <code style="font-family:'JetBrains Mono',monospace">/web-setup</code> で Web 版を有効化する場合に必要。</span>
           </div>
         </div>
         <div class="step">
-          <div class="step-n">4</div>
+          <div class="step-n">5</div>
           <div class="step-b">
             <strong>（Web でも使いたい場合）<code style="font-family:'JetBrains Mono',monospace">/web-setup</code> を実行する</strong>
             <span>ターミナルで <code style="font-family:'JetBrains Mono',monospace">claude</code> と入力してログイン後、claudeセッション内で以下を入力する。</span>
